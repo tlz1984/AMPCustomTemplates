@@ -1,17 +1,5 @@
 [
     {
-        "DisplayName": "Public Port",
-        "Category": "Palworld:stadia_controller",
-        "Subcategory": "Server:dns:1",
-        "Description": "",
-        "Keywords": "",
-        "FieldName": "$GamePort",
-        "InputType": "number",
-        "Hidden": true,
-        "ParamFieldName": "PublicPort",
-        "EnumValues": {}
-    },
-    {
         "DisplayName": "RCON Port",
         "Category": "Palworld:stadia_controller",
         "Subcategory": "Server:dns:1",
@@ -37,16 +25,16 @@
         "EnumValues": {}
     },
     {
-        "DisplayName": "Enable UE4SS Console",
+        "DisplayName": "Disable UE4SS Console",
         "Category": "Palworld:stadia_controller",
         "Subcategory": "Server:dns:1",
         "Description": "",
         "Keywords": "",
-        "FieldName": "ConsoleEnabled",
+        "FieldName": "Debug.ConsoleEnabled",
         "InputType": "number",
         "Hidden": true,
         "ParamFieldName": "Debug.ConsoleEnabled",
-        "DefaultValue": "1",
+        "DefaultValue": "0",
         "EnumValues": {}
     },
     {
@@ -192,6 +180,35 @@
         "EnumValues": {}
     },
     {
+        "DisplayName": "Public Port Selection Mode",
+        "Category": "Palworld:stadia_controller",
+        "Subcategory": "Server:dns:1",
+        "Description": "Sets whether the public port advertised for the server should be the same as the Game Port, or whether it should be the custom port set under Server Public Port",
+        "Keywords": "public,port,publicport",
+        "FieldName": "PublicPort",
+        "InputType": "enum",
+        "ParamFieldName": "PublicPort",
+        "DefaultValue": "{{$GamePort}}",
+        "EnumValues": {
+            "{{$GamePort}}": "Use Game Port (default)",
+            "{{CustomPublicPort}}": "Use custom port"
+        }
+    },
+    {
+        "DisplayName": "Server Public Port",
+        "Category": "Palworld:stadia_controller",
+        "Subcategory": "Server:dns:1",
+        "Description": "Sets the public port advertised for the server, if \"Use custom port\" is selected as the Public Port Selection Mode",
+        "Keywords": "custom,public,port,publicport",
+        "FieldName": "CustomPublicPort",
+        "InputType": "number",
+        "MinValue": "1024",
+        "MaxValue": "65535",
+        "ParamFieldName": "CustomPublicPort",
+        "DefaultValue": "",
+        "EnumValues": {}
+    },
+    {
         "DisplayName": "Server Password",
         "Category": "Palworld:stadia_controller",
         "Subcategory": "Server:dns:1",
@@ -264,12 +281,12 @@
         "DisplayName": "Enable Multi-Threaded Performance Improvements",
         "Category": "Palworld:stadia_controller",
         "Subcategory": "Server:dns:1",
-        "Description": "If enabled, the server's performance will be enhanced in multi-threaded CPU environments",
+        "Description": "If enabled, the server's performance will be enhanced in multi-threaded CPU environments. May cause the server to crash if enabled",
         "Keywords": "multi,thread,threaded,performance,improvements,useperfthreads,NoAsyncLoadingThread,UseMultithreadForDS",
         "FieldName": "MultiThread",
         "InputType": "checkbox",
         "ParamFieldName": "MultiThread",
-        "DefaultValue": "-useperfthreads -NoAsyncLoadingThread -UseMultithreadForDS ",
+        "DefaultValue": "",
         "EnumValues": {
             "False": "",
             "True": "-useperfthreads -NoAsyncLoadingThread -UseMultithreadForDS "
