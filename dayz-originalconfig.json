@@ -24,7 +24,7 @@
         "IsFlagArgument": false,
         "ParamFieldName": "hostname",
         "IncludeInCommandLine": false,
-        "DefaultValue": "AMP Powered DayZ Server",
+        "DefaultValue": "Powered by GATZ Game Hosting",
         "EnumValues": {}
     },
     {
@@ -79,7 +79,7 @@
         "IsFlagArgument": false,
         "ParamFieldName": "motd",
         "IncludeInCommandLine": false,
-        "DefaultValue": "\"Welcome to DayZ\",\"Hosted using AMP by CubeCoders\"",
+        "DefaultValue": "\"Welcome to DayZ\",\"Hosted by GATZ Game Hosting\"",
         "EnumValues": {}
     },
     {
@@ -96,6 +96,20 @@
         "DefaultValue": "5",
         "Placeholder": "5",
         "Suffix": "seconds",
+        "EnumValues": {}
+    },
+	{
+        "DisplayName": "Description",
+        "Category": "DayZ:stadia_controller",
+        "Subcategory": "Server:dns:1",
+        "Description": "Description of the server. Gets displayed to users in the client server browser, max length 255 characters",
+        "Keywords": "description,message",
+        "FieldName": "description",
+        "InputType": "text",
+        "IsFlagArgument": false,
+        "ParamFieldName": "description",
+        "IncludeInCommandLine": false,
+        "DefaultValue": "Hosted by GATZ Game Hosting",
         "EnumValues": {}
     },
     {
@@ -303,6 +317,23 @@
         "IsFlagArgument": false,
         "ParamFieldName": "ip",
         "IncludeInCommandLine": false,
+        "EnumValues": {}
+    },
+	{
+        "DisplayName": "Verify Signatures",
+        "Category": "DayZ:stadia_controller",
+        "Subcategory": "Server:dns:1",
+        "Description": "Verifies .pbos against .bisign files. (only 2 is supported)",
+        "Keywords": "verify,signatures,verifySignatures",
+        "FieldName": "verifySignatures",
+        "InputType": "number",
+        "MinValue": "0",
+		"MaxValue": "2",
+        "IsFlagArgument": false,
+        "ParamFieldName": "verifySignatures",
+        "IncludeInCommandLine": false,
+        "DefaultValue": "2",
+        "Placeholder": "0",
         "EnumValues": {}
     },
     {
