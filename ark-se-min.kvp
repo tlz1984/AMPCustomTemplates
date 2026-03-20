@@ -27,12 +27,12 @@ Meta.AppIsMultiIPAware=True
 App.DisplayName=ARK: Survival Evolved
 App.RootDir=./arkse/
 App.BaseDirectory=./arkse/376030/
-App.ExecutableWin=376030\ShooterGame\Binaries\Win64\ShooterGameServer.exe
+App.ExecutableWin=2430930\ShooterGame\Binaries\Win64\GATZLimiter.exe
 App.ExecutableLinux=376030/ShooterGame/Binaries/Linux/ShooterGameServer
 App.WorkingDir=376030/ShooterGame/Binaries/Win64
 App.LinuxCommandLineArgs=
 App.WindowsCommandLineArgs=
-App.CommandLineArgs={{Map}}?listen?Port={{$GamePort}}?QueryPort={{$QueryPort}}?RCONEnabled=True?RCONServerGameLogBuffer=600?RCONPort={{$RCONPort}}?MultiHome={{$ApplicationIPBinding}}?{{$FormattedArgs}}{{CustomOptions}}?ServerAdminPassword={{$RemoteAdminPassword}} {{automanagedmods}}{{exclusivejoin}}{{BattlEye}}{{crossplay}}{{epiconly}}{{UseVivox}}{{UseDynamicConfig}}{{insecure}}{{EnableIdlePlayerKick}}{{NoHangDetection}}{{NoTransferFromFiltering}}{{AllowFlyerSpeedLeveling}}{{ForceAllowCaveFlyers}}{{nodinos}}{{PreventHibernation}}{{ForceRespawnDinos}}{{DisableRailgunPVP}}{{UseStructureStasisGrid}}{{AutoDestroyStructures}} -ActiveEvent={{ActiveEvent}} -PublicIPForEpic={{PublicIPForEpic}} -culture={{culture}} {{EnableCluster}}{{CustomFlags}} -servergamelog
+App.CommandLineArgs=--real-exe ArkAscendedServer.exe {{$PlatformArgs}} {{Map}}?listen?Port={{$GamePort}}?RCONEnabled=True?RCONServerGameLogBuffer=600?RCONPort={{$RCONPort}}{{CustomOptions}}?ServerAdminPassword={{$RemoteAdminPassword}} -WinLiveMaxPlayers={{$MaxUsers}} {{passivemods}}{{mods}}{{pconlymods}}{{Colors}}{{exclusivejoin}}{{BattlEye}}{{usestore}}-ServerPlatform={{ServerPlatform}} {{UseDynamicConfig}}{{EnableIdlePlayerKick}}{{NoHangDetection}}{{DisableCustomCosmetics}}{{NoTransferFromFiltering}}{{NoGameAnalytics}}{{ForceAllowCaveFlyers}}{{nodinos}}{{ForceRespawnDinos}}{{DisableRailgunPVP}}{{UseStructureStasisGrid}}-culture={{culture}} {{EnableCluster}}{{ServerIP}}{{CustomFlags}} -servergamelog
 App.UseLinuxIOREDIR=False
 App.AppSettings={}
 App.EnvironmentVariables={"LD_LIBRARY_PATH":"{{$FullBaseDir}}linux64:{{$FullRootDir}}linux64:%LD_LIBRARY_PATH%","SteamAppId":"346110"}
