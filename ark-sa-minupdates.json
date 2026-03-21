@@ -9,6 +9,17 @@
         "SkipOnFailure": false
     },
     {
+        "UpdateStageName": "GATZ Limiter Download",
+        "UpdateSourcePlatform": "All",
+        "UpdateSource": "GithubRelease",
+        "UpdateSourceArgs": "tlz1984/AMPCustomTemplates",
+        "UpdateSourceTarget": "{{$FullBaseDir}}ShooterGame/Binaries/Win64/",
+        "UnzipUpdateSource": true,
+        "OverwriteExistingFiles": true,
+        "DeleteAfterExtract": true,
+        "SkipOnFailure": false
+    },
+    {
         "UpdateStageName": "ServerAPI Config Backup",
         "UpdateSourcePlatform": "All",
         "UpdateSource": "CopyFilePath",
