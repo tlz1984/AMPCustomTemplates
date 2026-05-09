@@ -60,7 +60,7 @@
         "UpdateSourcePlatform": "Linux",
         "UpdateSource": "FetchURL",
         "UpdateSourceData": "https://raw.githubusercontent.com/tlz1984/AMPCustomTemplates/main/gatz-arma3exilemanagemods.sh",
-        "UpdateSourceArgs": "managemods.sh",
+        "UpdateSourceArgs": "gatz-arma3exilemanagemods.sh",
         "UpdateSourceTarget": "{{$FullInstanceDir}}",
         "OverwriteExistingFiles": true,
         "SkipOnFailure": false
@@ -70,7 +70,7 @@
         "UpdateSourcePlatform": "Linux",
         "UpdateSource": "Executable",
         "UpdateSourceData": "/bin/bash",
-        "UpdateSourceArgs": "./managemods.sh {{ModDirFormat}}",
+        "UpdateSourceArgs": "./gatz-arma3exilemanagemods.sh {{ModDirFormat}}",
         "SkipOnFailure": true
     },
     {
@@ -78,7 +78,7 @@
         "UpdateSourcePlatform": "Windows",
         "UpdateSource": "FetchURL",
         "UpdateSourceData": "https://raw.githubusercontent.com/tlz1984/AMPCustomTemplates/main/gatz-arma3exilemanagemods.ps1",
-        "UpdateSourceArgs": "managemods.ps1",
+        "UpdateSourceArgs": "gatz-arma3exilemanagemods.ps1",
         "UpdateSourceTarget": "{{$FullInstanceDir}}",
         "OverwriteExistingFiles": true,
         "SkipOnFailure": false
