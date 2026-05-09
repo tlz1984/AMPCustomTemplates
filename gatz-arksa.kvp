@@ -1,4 +1,4 @@
-Meta.DisplayName=ARK Survival Ascended
+Meta.DisplayName=GATZ ARK Survival Ascended
 Meta.Description=ARK Survival Ascended Dedicated Server with Server API option and minimal settings (for Beacon use)
 Meta.OS=Windows, Linux
 Meta.AarchSupport=Unknown
@@ -26,7 +26,7 @@ Meta.ReleaseNotes=
 Meta.BreakingReleaseNotes=
 Meta.AppConfigId=5472c05e-4ed0-484f-8b1b-c27c8b9910f3
 Meta.AppIsMultiIPAware=False
-App.DisplayName=ARK Survival Ascended
+App.DisplayName=GATZ ARK Survival Ascended
 App.RootDir=./arksa/
 App.BaseDirectory=./arksa/2430930/
 App.SteamWorkshopDownloadLocation=
