@@ -22,7 +22,7 @@
         "UpdateSourcePlatform": "Linux",
         "UpdateSource": "FetchURL",
         "UpdateSourceData": "https://raw.githubusercontent.com/tlz1984/AMPCustomTemplates/main/gatz-dayzmanagemods.sh",
-        "UpdateSourceArgs": "managemods.sh",
+        "UpdateSourceArgs": "gatz-dayzmanagemods.sh",
         "UpdateSourceTarget": "{{$FullInstanceDir}}",
         "OverwriteExistingFiles": true,
         "SkipOnFailure": false
@@ -32,7 +32,7 @@
         "UpdateSourcePlatform": "Linux",
         "UpdateSource": "Executable",
         "UpdateSourceData": "/bin/bash",
-        "UpdateSourceArgs": "./managemods.sh {{ModDirFormat}}",
+        "UpdateSourceArgs": "./gatz-dayzmanagemods.sh {{ModDirFormat}}",
         "SkipOnFailure": true
     },
     {
@@ -40,7 +40,7 @@
         "UpdateSourcePlatform": "Windows",
         "UpdateSource": "FetchURL",
         "UpdateSourceData": "https://raw.githubusercontent.com/tlz1984/AMPCustomTemplates/main/gatz-dayzmanagemods.ps1",
-        "UpdateSourceArgs": "gatzmanagemods.ps1",
+        "UpdateSourceArgs": "gatz-dayzmanagemods.ps1",
         "UpdateSourceTarget": "{{$FullInstanceDir}}",
         "OverwriteExistingFiles": true,
         "SkipOnFailure": false
