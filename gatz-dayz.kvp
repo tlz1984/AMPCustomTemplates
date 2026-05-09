@@ -1,4 +1,4 @@
-Meta.DisplayName=GATZ DayZ (Stable)
+Meta.DisplayName=DayZ (Stable)
 Meta.Description=DayZ (Stable) Dedicated Server
 Meta.OS=Windows, Linux
 Meta.Arch=x86_64
@@ -22,7 +22,7 @@ Meta.NoCommercialUsage=False
 Meta.ConfigVersion=11
 Meta.AppConfigId=9f3b5c32-1c2b-4d4d-9b58-7a8a4bb0x9273
 Meta.AppIsMultiIPAware=True
-App.DisplayName=GATZ DayZ (Stable)
+App.DisplayName=DayZ (Stable)
 App.RootDir=./dayz/
 App.BaseDirectory=./dayz/223350/
 App.StoresSupported=SteamWorkshop
