@@ -24,7 +24,7 @@
         "IsFlagArgument": false,
         "ParamFieldName": "hostname",
         "IncludeInCommandLine": false,
-        "DefaultValue": "AMP Powered DayZ Server",
+        "DefaultValue": "GATZ Powered DayZ Server",
         "EnumValues": {}
     },
     {
@@ -79,7 +79,7 @@
         "IsFlagArgument": false,
         "ParamFieldName": "motd",
         "IncludeInCommandLine": false,
-        "DefaultValue": "\"Welcome to DayZ\",\"Hosted using AMP by CubeCoders\"",
+        "DefaultValue": "\"Hosted by GATZ Game Hosting\"",
         "EnumValues": {}
     },
     {
@@ -270,6 +270,7 @@
         "Keywords": "mods,addons,bikeys",
         "FieldName": "ManageBikeys",
         "InputType": "checkbox",
+        "Hidden": true,
         "IsFlagArgument": false,
         "ParamFieldName": "ManageBikeys",
         "IncludeInCommandLine": false,
@@ -320,7 +321,7 @@
         "IsFlagArgument": false,
         "ParamFieldName": "filePatching",
         "IncludeInCommandLine": false,
-        "DefaultValue": "-filePatching ",
+        "DefaultValue": "",
         "EnumValues": {
             "False": "",
             "True": "-filePatching "
@@ -465,14 +466,14 @@
         "DisplayName": "Enable RPT File Logging",
         "Category": "DayZ:stadia_controller",
         "Subcategory": "Server:dns:1",
-        "Description": "If set, enables all log messages in the server RPT file. Generally preferable to keep enabled, however some mods will stop the server from starting if this is enabled",
+        "Description": "If set, enables all log messages in the server RPT file. Some mods will stop the server from starting if this is enabled",
         "Keywords": "enable,logs,logging,rpt,dologs",
         "FieldName": "doLogs",
         "InputType": "checkbox",
         "IsFlagArgument": false,
         "ParamFieldName": "doLogs",
         "IncludeInCommandLine": false,
-        "DefaultValue": "-doLogs ",
+        "DefaultValue": "",
         "EnumValues": {
             "False": "",
             "True": "-doLogs "
