@@ -491,7 +491,6 @@
         "ParamFieldName": "CustomServerArgs",
         "IncludeInCommandLine": false,
         "DefaultValue": "",
-        "Placeholder": "-cpuCount=2",
         "EnumValues": {}
     },
     {
