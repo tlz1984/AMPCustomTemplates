@@ -53,36 +53,36 @@ function Write-InstallResult {
     $result | ConvertTo-Json -Depth 10 | Set-Content -LiteralPath $tmpPath -Encoding UTF8
     Move-Item -LiteralPath $tmpPath -Destination $resultPath -Force
 
-    Write-Host "Wrote install result to '$resultPath'."
+    Write-Host "Wrote install result to '$($resultPath)'."
 }
 
 if (-not (Test-Path -LiteralPath $serverRoot)) {
-    Write-Host "ERROR: DayZ server root not found at '$serverRoot'."
-    $failedMods.Add([PSCustomObject]@{ Id = ""; Reason = "DayZ server root not found at '$serverRoot'." })
+    Write-Host "ERROR: DayZ server root not found at '$($serverRoot)'."
+    $failedMods.Add([PSCustomObject]@{ Id = ""; Reason = "DayZ server root not found at '$($serverRoot)'." })
     Write-InstallResult -Success $false
     exit 1
 }
 
 if (-not (Test-Path -LiteralPath $workshopDir)) {
-    Write-Host "No workshop content directory at '$workshopDir'. Nothing to do."
+    Write-Host "No workshop content directory at '$($workshopDir)'. Nothing to do."
     Write-InstallResult -Success $true
     exit 0
 }
 
 # Ensure server keys folder exists
 if (-not (Test-Path -LiteralPath $serverKeys)) {
-    Write-Host "Creating server keys folder at '$serverKeys'..."
+    Write-Host "Creating server keys folder at '$($serverKeys)'..."
     New-Item -ItemType Directory -Path $serverKeys -Force | Out-Null
 }
 
 Set-Location -LiteralPath $serverRoot
-Write-Host "Server root: $serverRoot"
-Write-Host "Workshop dir: $workshopDir"
+Write-Host "Server root: $($serverRoot)"
+Write-Host "Workshop dir: $($workshopDir)"
 
 # Enumerate mod folders under the DayZ workshop content
 $mods = Get-ChildItem -LiteralPath $workshopDir -Directory -ErrorAction SilentlyContinue
 if (-not $mods -or $mods.Count -eq 0) {
-    Write-Host "No workshop mods found under '$workshopDir'."
+    Write-Host "No workshop mods found under '$($workshopDir)'."
     Write-InstallResult -Success $true
     exit 0
 }
@@ -149,7 +149,7 @@ foreach ($modFolder in $mods) {
     $modDir = $modFolder.FullName
     $modId  = $modFolder.Name
     Write-Host ""
-    Write-Host "Processing workshop mod ID $modId at '$modDir'..."
+    Write-Host "Processing workshop mod ID $($modId) at '$($modDir)'..."
 
     try {
         # 1) Try meta.cpp / mod.cpp
@@ -162,8 +162,8 @@ foreach ($modFolder in $mods) {
         }
 
         if (-not $modName) {
-            $reason = "Unable to determine name for workshop item $modId."
-            Write-Host "  ERROR: $reason Skipping."
+            $reason = "Unable to determine name for workshop item $($modId)."
+            Write-Host "  ERROR: $($reason) Skipping."
             $failedMods.Add([PSCustomObject]@{ Id = $modId; Reason = $reason })
             continue
         }
@@ -176,11 +176,11 @@ foreach ($modFolder in $mods) {
 
         # If a destination folder already exists, remove it so we overwrite with new version
         if (Test-Path -LiteralPath $destPath) {
-            Write-Host "  Removing existing destination folder '$destPath'..."
+            Write-Host "  Removing existing destination folder '$($destPath)'..."
             Remove-Item -LiteralPath $destPath -Recurse -Force
         }
 
-        Write-Host "  Moving mod '$modName' ($modId) -> '$destFolderName'..."
+        Write-Host "  Moving mod '$($modName)' ($($modId)) -> '$($destFolderName)'..."
         Move-Item -LiteralPath $modDir -Destination $destPath -Force
 
         $movedMods.Add([PSCustomObject]@{
@@ -200,7 +200,7 @@ foreach ($modFolder in $mods) {
             if ($candidateKeyDirs -and $candidateKeyDirs.Count -gt 0) {
                 foreach ($keysDir in $candidateKeyDirs) {
                     $keysPath = $keysDir.FullName
-                    Write-Host "  Found keys directory '$keysPath'. Copying .bikey files to '$serverKeys'..."
+                    Write-Host "  Found keys directory '$($keysPath)'. Copying .bikey files to '$($serverKeys)'..."
 
                     $bikeyFiles = Get-ChildItem -LiteralPath $keysPath -Filter "*.bikey" -File -Recurse -ErrorAction SilentlyContinue
                     foreach ($bikey in $bikeyFiles) {
@@ -209,14 +209,14 @@ foreach ($modFolder in $mods) {
                     }
                 }
             } else {
-                Write-Host "  No keys folder (key/keys) found in '$destPath'."
+                Write-Host "  No keys folder (key/keys) found in '$($destPath)'."
             }
         } catch {
-            Write-Host "  ERROR while copying .bikey files for mod '$modName' ($modId): $($_.Exception.Message)"
+            Write-Host "  ERROR while copying .bikey files for mod '$($modName)' ($($modId)): $($_.Exception.Message)"
         }
     } catch {
         $reason = $_.Exception.Message
-        Write-Host "  ERROR while processing workshop item $modId: $reason"
+        Write-Host "  ERROR while processing workshop item $($modId): $($reason)"
         $failedMods.Add([PSCustomObject]@{ Id = $modId; Reason = $reason })
     }
 }
@@ -230,17 +230,17 @@ $workshopRoot = Join-Path $serverRoot "steamapps\workshop"
 
 if (-not $remaining -or $remaining.Count -eq 0) {
     Write-Host ""
-    Write-Host "DayZ workshop content '$workshopDir' is now empty."
+    Write-Host "DayZ workshop content '$($workshopDir)' is now empty."
 
     if (Test-Path -LiteralPath $workshopRoot) {
-        Write-Host "Deleting workshop root directory '$workshopRoot'..."
+        Write-Host "Deleting workshop root directory '$($workshopRoot)'..."
         Remove-Item -LiteralPath $workshopRoot -Recurse -Force
     } else {
-        Write-Host "Workshop root directory '$workshopRoot' not found (already removed?)."
+        Write-Host "Workshop root directory '$($workshopRoot)' not found (already removed?)."
     }
 } else {
     Write-Host ""
-    Write-Host "DayZ workshop content '$workshopDir' is not empty; leaving workshop folder in place."
+    Write-Host "DayZ workshop content '$($workshopDir)' is not empty; leaving workshop folder in place."
 }
 
 $success = ($failedMods.Count -eq 0)
