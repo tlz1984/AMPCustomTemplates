@@ -196,37 +196,57 @@ foreach ($modFolder in $mods) {
         Write-Host "  Moving mod '$($modName)' ($($modId)) -> '$($destFolderName)'..."
         Move-Item -LiteralPath $modDir -Destination $destPath -Force
 
-        $movedMods.Add([PSCustomObject]@{
-            Id         = $modId
-            FolderName = $destFolderName
-            SourceName = $sourceName
-        })
-
         # ----------------------------------------------------------------------
-        # Copy .bikey files from mod's keys folder into server root 'keys' folder
+        # Copy .bikey files from mod's keys folder into server root 'keys' folder.
+        # Key issues are warnings only. They should not fail the install.
         # Folder name could be: keys, key, Keys, Key (case-insensitive)
         # ----------------------------------------------------------------------
+        $keysFolderFound = $false
+        $bikeysCopied = 0
+        $keyWarning = ""
+
         try {
             $candidateKeyDirs = Get-ChildItem -LiteralPath $destPath -Directory -ErrorAction SilentlyContinue |
                 Where-Object { $_.Name -match '^(?i)keys?$' }   # "key" or "keys", any case
 
             if ($candidateKeyDirs -and $candidateKeyDirs.Count -gt 0) {
+                $keysFolderFound = $true
+
                 foreach ($keysDir in $candidateKeyDirs) {
                     $keysPath = $keysDir.FullName
                     Write-Host "  Found keys directory '$($keysPath)'. Copying .bikey files to '$($serverKeys)'..."
 
                     $bikeyFiles = Get-ChildItem -LiteralPath $keysPath -Filter "*.bikey" -File -Recurse -ErrorAction SilentlyContinue
-                    foreach ($bikey in $bikeyFiles) {
-                        $destKeyPath = Join-Path $serverKeys $bikey.Name
-                        Copy-Item -LiteralPath $bikey.FullName -Destination $destKeyPath -Force
+                    if ($bikeyFiles -and $bikeyFiles.Count -gt 0) {
+                        foreach ($bikey in $bikeyFiles) {
+                            $destKeyPath = Join-Path $serverKeys $bikey.Name
+                            Copy-Item -LiteralPath $bikey.FullName -Destination $destKeyPath -Force
+                            $bikeysCopied++
+                        }
                     }
                 }
+
+                if ($bikeysCopied -eq 0) {
+                    $keyWarning = "Key folder found, but no .bikey files were copied. If this mod requires a separate key, add it manually."
+                    Write-Host "  WARNING: $($keyWarning)"
+                }
             } else {
-                Write-Host "  No keys folder (key/keys) found in '$($destPath)'."
+                $keyWarning = "No key/keys folder found. If this mod requires a separate key, add it manually."
+                Write-Host "  WARNING: $($keyWarning)"
             }
         } catch {
-            Write-Host "  ERROR while copying .bikey files for mod '$($modName)' ($($modId)): $($_.Exception.Message)"
+            $keyWarning = "Error while copying .bikey files: $($_.Exception.Message)"
+            Write-Host "  WARNING: $($keyWarning)"
         }
+
+        $movedMods.Add([PSCustomObject]@{
+            Id              = $modId
+            FolderName      = $destFolderName
+            SourceName      = $sourceName
+            KeysFolderFound = $keysFolderFound
+            BikeysCopied    = $bikeysCopied
+            KeyWarning      = $keyWarning
+        })
     } catch {
         $reason = $_.Exception.Message
         Write-Host "  ERROR while processing workshop item $($modId): $($reason)"
