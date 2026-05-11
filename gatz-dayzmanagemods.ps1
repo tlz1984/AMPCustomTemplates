@@ -12,13 +12,60 @@ $serverRoot  = Join-Path $scriptDir "dayz\223350"
 $workshopDir = Join-Path $serverRoot "steamapps\workshop\content\221100"
 $serverKeys  = Join-Path $serverRoot "keys"
 
+$jobDir      = Join-Path $scriptDir "GATZModManagement"
+$requestPath = Join-Path $jobDir "install-request.json"
+$resultPath  = Join-Path $jobDir "install-result.json"
+
+$jobId = ""
+$movedMods = New-Object System.Collections.Generic.List[object]
+$failedMods = New-Object System.Collections.Generic.List[object]
+
+if (Test-Path -LiteralPath $requestPath) {
+    try {
+        $request = Get-Content -LiteralPath $requestPath -Raw | ConvertFrom-Json
+        $jobId = [string]$request.JobId
+        Write-Host "Install request found. JobId: $jobId"
+    } catch {
+        Write-Host "WARNING: Failed to read install request '$requestPath': $($_.Exception.Message)"
+    }
+} else {
+    Write-Host "WARNING: No install request file found at '$requestPath'. Mods will still be processed, but plugin may not finalize this job."
+}
+
+function Write-InstallResult {
+    param(
+        [bool]$Success
+    )
+
+    if (-not (Test-Path -LiteralPath $jobDir)) {
+        New-Item -ItemType Directory -Path $jobDir -Force | Out-Null
+    }
+
+    $result = [PSCustomObject]@{
+        JobId        = $jobId
+        CompletedUtc = [DateTime]::UtcNow.ToString("o")
+        Success      = $Success
+        MovedMods    = @($movedMods)
+        Failed       = @($failedMods)
+    }
+
+    $tmpPath = "$resultPath.tmp"
+    $result | ConvertTo-Json -Depth 10 | Set-Content -LiteralPath $tmpPath -Encoding UTF8
+    Move-Item -LiteralPath $tmpPath -Destination $resultPath -Force
+
+    Write-Host "Wrote install result to '$resultPath'."
+}
+
 if (-not (Test-Path -LiteralPath $serverRoot)) {
     Write-Host "ERROR: DayZ server root not found at '$serverRoot'."
+    $failedMods.Add([PSCustomObject]@{ Id = ""; Reason = "DayZ server root not found at '$serverRoot'." })
+    Write-InstallResult -Success $false
     exit 1
 }
 
 if (-not (Test-Path -LiteralPath $workshopDir)) {
     Write-Host "No workshop content directory at '$workshopDir'. Nothing to do."
+    Write-InstallResult -Success $true
     exit 0
 }
 
@@ -36,6 +83,7 @@ Write-Host "Workshop dir: $workshopDir"
 $mods = Get-ChildItem -LiteralPath $workshopDir -Directory -ErrorAction SilentlyContinue
 if (-not $mods -or $mods.Count -eq 0) {
     Write-Host "No workshop mods found under '$workshopDir'."
+    Write-InstallResult -Success $true
     exit 0
 }
 
@@ -81,9 +129,9 @@ function Get-ModNameFromSteam {
 
     try {
         $resp = Invoke-WebRequest -UseBasicParsing -Uri $steamPage -ErrorAction Stop
-    }catch {
-    	Write-Host ("  Failed to fetch Steam page for {0}: {1}" -f $ModId, $_.Exception.Message)
-    	return $null
+    } catch {
+        Write-Host ("  Failed to fetch Steam page for {0}: {1}" -f $ModId, $_.Exception.Message)
+        return $null
     }
 
     $match = $resp.Content |
@@ -103,58 +151,73 @@ foreach ($modFolder in $mods) {
     Write-Host ""
     Write-Host "Processing workshop mod ID $modId at '$modDir'..."
 
-    # 1) Try meta.cpp / mod.cpp
-    $modName = Get-ModNameFromMetaFiles -ModDir $modDir
-
-    # 2) Fallback to Steam page if needed
-    if (-not $modName) {
-        Write-Host "  No name found in meta/mod.cpp. Fetching from Steam..."
-        $modName = Get-ModNameFromSteam -ModId $modId
-    }
-
-    if (-not $modName) {
-        Write-Host "  ERROR: Unable to determine name for workshop item $modId. Skipping."
-        continue
-    }
-
-    # Sanitize for Windows filesystem
-    $modName = $modName -replace '[\\/:*?"<>|]', '-'
-    $destFolderName = "@$modName"
-    $destPath = Join-Path $serverRoot $destFolderName
-
-    # If a destination folder already exists, remove it so we overwrite with new version
-    if (Test-Path -LiteralPath $destPath) {
-        Write-Host "  Removing existing destination folder '$destPath'..."
-        Remove-Item -LiteralPath $destPath -Recurse -Force
-    }
-
-    Write-Host "  Moving mod '$modName' ($modId) -> '$destFolderName'..."
-    Move-Item -LiteralPath $modDir -Destination $destPath -Force
-
-    # ----------------------------------------------------------------------
-    # Copy .bikey files from mod's keys folder into server root 'keys' folder
-    # Folder name could be: keys, key, Keys, Key (case-insensitive)
-    # ----------------------------------------------------------------------
     try {
-        $candidateKeyDirs = Get-ChildItem -LiteralPath $destPath -Directory -ErrorAction SilentlyContinue |
-            Where-Object { $_.Name -match '^(?i)keys?$' }   # "key" or "keys", any case
+        # 1) Try meta.cpp / mod.cpp
+        $modName = Get-ModNameFromMetaFiles -ModDir $modDir
 
-        if ($candidateKeyDirs -and $candidateKeyDirs.Count -gt 0) {
-            foreach ($keysDir in $candidateKeyDirs) {
-                $keysPath = $keysDir.FullName
-                Write-Host "  Found keys directory '$keysPath'. Copying .bikey files to '$serverKeys'..."
+        # 2) Fallback to Steam page if needed
+        if (-not $modName) {
+            Write-Host "  No name found in meta/mod.cpp. Fetching from Steam..."
+            $modName = Get-ModNameFromSteam -ModId $modId
+        }
 
-                $bikeyFiles = Get-ChildItem -LiteralPath $keysPath -Filter "*.bikey" -File -Recurse -ErrorAction SilentlyContinue
-                foreach ($bikey in $bikeyFiles) {
-                    $destKeyPath = Join-Path $serverKeys $bikey.Name
-                    Copy-Item -LiteralPath $bikey.FullName -Destination $destKeyPath -Force
+        if (-not $modName) {
+            $reason = "Unable to determine name for workshop item $modId."
+            Write-Host "  ERROR: $reason Skipping."
+            $failedMods.Add([PSCustomObject]@{ Id = $modId; Reason = $reason })
+            continue
+        }
+
+        # Sanitize for Windows filesystem
+        $sourceName = $modName
+        $modName = $modName -replace '[\\/:*?"<>|]', '-'
+        $destFolderName = "@$modName"
+        $destPath = Join-Path $serverRoot $destFolderName
+
+        # If a destination folder already exists, remove it so we overwrite with new version
+        if (Test-Path -LiteralPath $destPath) {
+            Write-Host "  Removing existing destination folder '$destPath'..."
+            Remove-Item -LiteralPath $destPath -Recurse -Force
+        }
+
+        Write-Host "  Moving mod '$modName' ($modId) -> '$destFolderName'..."
+        Move-Item -LiteralPath $modDir -Destination $destPath -Force
+
+        $movedMods.Add([PSCustomObject]@{
+            Id         = $modId
+            FolderName = $destFolderName
+            SourceName = $sourceName
+        })
+
+        # ----------------------------------------------------------------------
+        # Copy .bikey files from mod's keys folder into server root 'keys' folder
+        # Folder name could be: keys, key, Keys, Key (case-insensitive)
+        # ----------------------------------------------------------------------
+        try {
+            $candidateKeyDirs = Get-ChildItem -LiteralPath $destPath -Directory -ErrorAction SilentlyContinue |
+                Where-Object { $_.Name -match '^(?i)keys?$' }   # "key" or "keys", any case
+
+            if ($candidateKeyDirs -and $candidateKeyDirs.Count -gt 0) {
+                foreach ($keysDir in $candidateKeyDirs) {
+                    $keysPath = $keysDir.FullName
+                    Write-Host "  Found keys directory '$keysPath'. Copying .bikey files to '$serverKeys'..."
+
+                    $bikeyFiles = Get-ChildItem -LiteralPath $keysPath -Filter "*.bikey" -File -Recurse -ErrorAction SilentlyContinue
+                    foreach ($bikey in $bikeyFiles) {
+                        $destKeyPath = Join-Path $serverKeys $bikey.Name
+                        Copy-Item -LiteralPath $bikey.FullName -Destination $destKeyPath -Force
+                    }
                 }
+            } else {
+                Write-Host "  No keys folder (key/keys) found in '$destPath'."
             }
-        } else {
-            Write-Host "  No keys folder (key/keys) found in '$destPath'."
+        } catch {
+            Write-Host "  ERROR while copying .bikey files for mod '$modName' ($modId): $($_.Exception.Message)"
         }
     } catch {
-        Write-Host "  ERROR while copying .bikey files for mod '$modName' ($modId): $($_.Exception.Message)"
+        $reason = $_.Exception.Message
+        Write-Host "  ERROR while processing workshop item $modId: $reason"
+        $failedMods.Add([PSCustomObject]@{ Id = $modId; Reason = $reason })
     }
 }
 
@@ -180,6 +243,13 @@ if (-not $remaining -or $remaining.Count -eq 0) {
     Write-Host "DayZ workshop content '$workshopDir' is not empty; leaving workshop folder in place."
 }
 
+$success = ($failedMods.Count -eq 0)
+Write-InstallResult -Success $success
+
 Write-Host ""
 Write-Host "GATZ Manage Mods: completed."
-exit 0
+if ($success) {
+    exit 0
+}
+
+exit 1
