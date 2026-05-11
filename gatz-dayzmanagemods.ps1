@@ -41,13 +41,26 @@ function Write-InstallResult {
         New-Item -ItemType Directory -Path $jobDir -Force | Out-Null
     }
 
-    $result = [PSCustomObject]@{
-        JobId        = $jobId
-        CompletedUtc = [DateTime]::UtcNow.ToString("o")
-        Success      = $Success
-        MovedMods    = @($movedMods)
-        Failed       = @($failedMods)
+    $movedArray = @()
+    if ($null -ne $movedMods -and $movedMods.Count -gt 0) {
+        foreach ($item in $movedMods) {
+            $movedArray += $item
+        }
     }
+
+    $failedArray = @()
+    if ($null -ne $failedMods -and $failedMods.Count -gt 0) {
+        foreach ($item in $failedMods) {
+            $failedArray += $item
+        }
+    }
+
+    $result = New-Object PSObject
+    $result | Add-Member -MemberType NoteProperty -Name "JobId" -Value $jobId
+    $result | Add-Member -MemberType NoteProperty -Name "CompletedUtc" -Value ([DateTime]::UtcNow.ToString("o"))
+    $result | Add-Member -MemberType NoteProperty -Name "Success" -Value $Success
+    $result | Add-Member -MemberType NoteProperty -Name "MovedMods" -Value $movedArray
+    $result | Add-Member -MemberType NoteProperty -Name "Failed" -Value $failedArray
 
     $tmpPath = "$resultPath.tmp"
     $result | ConvertTo-Json -Depth 10 | Set-Content -LiteralPath $tmpPath -Encoding UTF8
