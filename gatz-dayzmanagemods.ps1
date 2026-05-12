@@ -17,6 +17,10 @@ $requestPath = Join-Path $jobDir "install-request.json"
 $resultPath  = Join-Path $jobDir "install-result.json"
 
 $jobId = ""
+$request = $null
+$serverOnlyIdSet = @{}
+$clientServerIdSet = @{}
+
 $movedMods = New-Object System.Collections.Generic.List[object]
 $failedMods = New-Object System.Collections.Generic.List[object]
 
@@ -25,6 +29,27 @@ if (Test-Path -LiteralPath $requestPath) {
         $request = Get-Content -LiteralPath $requestPath -Raw | ConvertFrom-Json
         $jobId = [string]$request.JobId
         Write-Host "Install request found. JobId: $jobId"
+
+        if ($null -ne $request.ClientServerIds) {
+            foreach ($id in $request.ClientServerIds) {
+                $cleanId = ([string]$id).Trim()
+                if ($cleanId.Length -gt 0) {
+                    $clientServerIdSet[$cleanId] = $true
+                }
+            }
+        }
+
+        if ($null -ne $request.ServerOnlyIds) {
+            foreach ($id in $request.ServerOnlyIds) {
+                $cleanId = ([string]$id).Trim()
+                if ($cleanId.Length -gt 0) {
+                    $serverOnlyIdSet[$cleanId] = $true
+                }
+            }
+        }
+
+        Write-Host "Install request Client+Server IDs: $($clientServerIdSet.Count)"
+        Write-Host "Install request Server Only IDs: $($serverOnlyIdSet.Count)"
     } catch {
         Write-Host "WARNING: Failed to read install request '$requestPath': $($_.Exception.Message)"
     }
@@ -198,45 +223,54 @@ foreach ($modFolder in $mods) {
 
         # ----------------------------------------------------------------------
         # Copy .bikey files from mod's keys folder into server root 'keys' folder.
-        # Key issues are warnings only. They should not fail the install.
+        # Only Client+Server mods should copy keys.
+        # Server Only mods should not copy keys into the server root keys folder.
         # Folder name could be: keys, key, Keys, Key (case-insensitive)
         # ----------------------------------------------------------------------
         $keysFolderFound = $false
         $bikeysCopied = 0
         $keyWarning = ""
 
-        try {
-            $candidateKeyDirs = Get-ChildItem -LiteralPath $destPath -Directory -ErrorAction SilentlyContinue |
-                Where-Object { $_.Name -match '^(?i)keys?$' }   # "key" or "keys", any case
+        $isServerOnly = $serverOnlyIdSet.ContainsKey($modId)
+        $isClientServer = $clientServerIdSet.ContainsKey($modId)
 
-            if ($candidateKeyDirs -and $candidateKeyDirs.Count -gt 0) {
-                $keysFolderFound = $true
+        if ($isServerOnly -and -not $isClientServer) {
+            $keyWarning = "Server Only mod; skipped .bikey copy."
+            Write-Host "  Server Only mod detected. Skipping .bikey copy to server keys folder."
+        } else {
+            try {
+                $candidateKeyDirs = Get-ChildItem -LiteralPath $destPath -Directory -ErrorAction SilentlyContinue |
+                    Where-Object { $_.Name -match '^(?i)keys?$' }   # "key" or "keys", any case
 
-                foreach ($keysDir in $candidateKeyDirs) {
-                    $keysPath = $keysDir.FullName
-                    Write-Host "  Found keys directory '$($keysPath)'. Copying .bikey files to '$($serverKeys)'..."
+                if ($candidateKeyDirs -and $candidateKeyDirs.Count -gt 0) {
+                    $keysFolderFound = $true
 
-                    $bikeyFiles = Get-ChildItem -LiteralPath $keysPath -Filter "*.bikey" -File -Recurse -ErrorAction SilentlyContinue
-                    if ($bikeyFiles -and $bikeyFiles.Count -gt 0) {
-                        foreach ($bikey in $bikeyFiles) {
-                            $destKeyPath = Join-Path $serverKeys $bikey.Name
-                            Copy-Item -LiteralPath $bikey.FullName -Destination $destKeyPath -Force
-                            $bikeysCopied++
+                    foreach ($keysDir in $candidateKeyDirs) {
+                        $keysPath = $keysDir.FullName
+                        Write-Host "  Found keys directory '$($keysPath)'. Copying .bikey files to '$($serverKeys)'..."
+
+                        $bikeyFiles = Get-ChildItem -LiteralPath $keysPath -Filter "*.bikey" -File -Recurse -ErrorAction SilentlyContinue
+                        if ($bikeyFiles -and $bikeyFiles.Count -gt 0) {
+                            foreach ($bikey in $bikeyFiles) {
+                                $destKeyPath = Join-Path $serverKeys $bikey.Name
+                                Copy-Item -LiteralPath $bikey.FullName -Destination $destKeyPath -Force
+                                $bikeysCopied++
+                            }
                         }
                     }
-                }
 
-                if ($bikeysCopied -eq 0) {
-                    $keyWarning = "Key folder found, but no .bikey files were copied. If this mod requires a separate key, add it manually."
+                    if ($bikeysCopied -eq 0) {
+                        $keyWarning = "Key folder found, but no .bikey files were copied. If this mod requires a separate key, add it manually."
+                        Write-Host "  WARNING: $($keyWarning)"
+                    }
+                } else {
+                    $keyWarning = "No key/keys folder found. If this mod requires a separate key, add it manually."
                     Write-Host "  WARNING: $($keyWarning)"
                 }
-            } else {
-                $keyWarning = "No key/keys folder found. If this mod requires a separate key, add it manually."
+            } catch {
+                $keyWarning = "Error while copying .bikey files: $($_.Exception.Message)"
                 Write-Host "  WARNING: $($keyWarning)"
             }
-        } catch {
-            $keyWarning = "Error while copying .bikey files: $($_.Exception.Message)"
-            Write-Host "  WARNING: $($keyWarning)"
         }
 
         $movedMods.Add([PSCustomObject]@{
