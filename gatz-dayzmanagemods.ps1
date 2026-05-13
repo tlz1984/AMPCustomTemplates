@@ -7,9 +7,71 @@ $ErrorActionPreference = "Stop"
 Write-Host "GATZ Manage Mods: starting..."
 
 # Figure out paths based on where this script lives
-$scriptDir   = Split-Path -Parent $MyInvocation.MyCommand.Path
-$serverRoot  = Join-Path $scriptDir "dayz\223350"
-$workshopDir = Join-Path $serverRoot "steamapps\workshop\content\221100"
+$scriptDir = Split-Path -Parent $MyInvocation.MyCommand.Path
+
+$kvpPath = Join-Path $scriptDir "GATZSteamModPlugin.kvp"
+
+if (-not (Test-Path -LiteralPath $kvpPath)) {
+    Write-Host "ERROR: GATZSteamModPlugin.kvp not found at '$($kvpPath)'."
+    exit 1
+}
+
+function Get-KvpValue {
+    param(
+        [string]$Path,
+        [string]$Key
+    )
+
+    $escapedKey = [regex]::Escape($Key)
+
+    $line = Get-Content -LiteralPath $Path -ErrorAction Stop |
+        Where-Object { $_ -match "^\s*$escapedKey\s*=" } |
+        Select-Object -First 1
+
+    if (-not $line) {
+        return $null
+    }
+
+    return (($line -split "=", 2)[1]).Trim()
+}
+
+function Normalize-PathPart {
+    param(
+        [string]$Value
+    )
+
+    if ([string]::IsNullOrWhiteSpace($Value)) {
+        return ""
+    }
+
+    return $Value.Trim().Trim([char[]]"\/")
+}
+
+$gameFolderName = Get-KvpValue -Path $kvpPath -Key "ModManagement.GameFolderName"
+$gameBranch     = Get-KvpValue -Path $kvpPath -Key "ModManagement.GameBranch"
+$modBranch      = Get-KvpValue -Path $kvpPath -Key "ModManagement.ModBranch"
+
+$gameFolderName = Normalize-PathPart $gameFolderName
+$gameBranch     = Normalize-PathPart $gameBranch
+$modBranch      = Normalize-PathPart $modBranch
+
+if ([string]::IsNullOrWhiteSpace($gameFolderName)) {
+    Write-Host "ERROR: ModManagement.GameFolderName is missing or blank in '$($kvpPath)'."
+    exit 1
+}
+
+if ([string]::IsNullOrWhiteSpace($gameBranch)) {
+    Write-Host "ERROR: ModManagement.GameBranch is missing or blank in '$($kvpPath)'."
+    exit 1
+}
+
+if ([string]::IsNullOrWhiteSpace($modBranch)) {
+    Write-Host "ERROR: ModManagement.ModBranch is missing or blank in '$($kvpPath)'."
+    exit 1
+}
+
+$serverRoot  = Join-Path $scriptDir (Join-Path $gameFolderName $gameBranch)
+$workshopDir = Join-Path $serverRoot (Join-Path "steamapps\workshop\content" $modBranch)
 $serverKeys  = Join-Path $serverRoot "keys"
 
 $jobDir      = Join-Path $scriptDir "GATZModManagement"
