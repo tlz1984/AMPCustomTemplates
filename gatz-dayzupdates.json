@@ -59,7 +59,7 @@
         "UpdateSource": "FetchURL",
         "UpdateSourceData": "https://github.com/tlz1984/AMPCustomTemplates/releases/download/Limiter/GATZLimiter.zip",
         "UpdateSourceArgs": "GATZLimiter.zip",
-        "UpdateSourceTarget": "{{$FullRootDir}}",
+        "UpdateSourceTarget": "{{$FullInstanceDir}}",
         "UnzipUpdateSource": true,
         "OverwriteExistingFiles": true,
         "DeleteAfterExtract": true,
