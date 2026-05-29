@@ -129,16 +129,16 @@
         "DisplayName": "RCON/Server Admin Password",
         "Category": "ARK SA:stadia_controller",
         "Subcategory": "Server:dns:1",
-        "Description": "This is the server admin password used for RCON and in-game admin commands.",
+        "Description": "This password is used for RCON and in-game administrator commands.",
         "Keywords": "rcon,password,serveradminpassword,admin",
-        "FieldName": "ServerAdminPassword",
+        "FieldName": "RCONPassword",
         "InputType": "text",
-        "ParamFieldName": "ServerAdminPassword",
+        "ParamFieldName": "RCONPassword",
         "DefaultValue": "",
-        "Placeholder": "Enter server admin password",
+        "Placeholder": "Enter admin/RCON password",
         "Required": true,
         "EnumValues": {}
-    },
+    }
     {
         "DisplayName": "Enable Player Whitelist",
         "Category": "ARK SA:stadia_controller",
