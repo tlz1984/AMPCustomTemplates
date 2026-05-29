@@ -132,8 +132,11 @@
         "Description": "See the Security and Privacy menu for configurable options for the server's RCON password. The RCON password is also used in the in-game console for players to access administrator commands (unless they are whitelisted)",
         "Keywords": "rcon,password,serveradminpassword",
         "FieldName": "RCONPassword",
-        "InputType": "hidden",
+        "InputType": "text",
         "ParamFieldName": "RCONPassword",
+        "DefaultValue": "$RemoteAdminPassword",
+        "Placeholder": "$RemoteAdminPassword",
+        "Required": true,
         "EnumValues": {}
     },
     {
