@@ -138,7 +138,7 @@
         "Placeholder": "Enter admin/RCON password",
         "Required": true,
         "EnumValues": {}
-    }
+    },
     {
         "DisplayName": "Enable Player Whitelist",
         "Category": "ARK SA:stadia_controller",
