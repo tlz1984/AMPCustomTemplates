@@ -5,21 +5,19 @@
         "UpdateSource": "FetchURL",
         "UpdateSourceData": "https://steamcdn-a.akamaihd.net/client/installer/steamcmd.zip",
         "UpdateSourceArgs": "steamcmd.zip",
-        "UpdateSourceTarget": "{{$FullBaseDir}}",
+        "UpdateSourceTarget": "{{$FullInstanceDir}}conan-exiles\\",
         "UnzipUpdateSource": true,
         "OverwriteExistingFiles": true,
         "DeleteAfterExtract": true,
-        "SkipOnFailure": false,
-        "OneShot": true
+        "SkipOnFailure": false
     },
     {
         "UpdateStageName": "SteamCMD Bootstrap Init",
         "UpdateSourcePlatform": "Windows",
         "UpdateSource": "Executable",
-        "UpdateSourceData": "steamcmd.exe",
-        "UpdateSourceArgs": "+quit",
-        "SkipOnFailure": false,
-        "OneShot": true
+        "UpdateSourceData": "C:\\Windows\\System32\\cmd.exe",
+        "UpdateSourceArgs": "/c \"\"{{$FullInstanceDir}}conan-exiles\\steamcmd.exe\" +quit\"",
+        "SkipOnFailure": false
     },
     {
         "UpdateStageName": "SteamCMD Conan Server Download",
