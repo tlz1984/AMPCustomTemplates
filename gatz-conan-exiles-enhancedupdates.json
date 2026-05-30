@@ -1,5 +1,27 @@
 [
     {
+        "UpdateStageName": "SteamCMD Bootstrap Download",
+        "UpdateSourcePlatform": "Windows",
+        "UpdateSource": "FetchURL",
+        "UpdateSourceData": "https://steamcdn-a.akamaihd.net/client/installer/steamcmd.zip",
+        "UpdateSourceArgs": "steamcmd.zip",
+        "UpdateSourceTarget": "{{$FullBaseDir}}",
+        "UnzipUpdateSource": true,
+        "OverwriteExistingFiles": true,
+        "DeleteAfterExtract": true,
+        "SkipOnFailure": false,
+        "OneShot": true
+    },
+    {
+        "UpdateStageName": "SteamCMD Bootstrap Init",
+        "UpdateSourcePlatform": "Windows",
+        "UpdateSource": "Executable",
+        "UpdateSourceData": "steamcmd.exe",
+        "UpdateSourceArgs": "+quit",
+        "SkipOnFailure": false,
+        "OneShot": true
+    },
+    {
         "UpdateStageName": "SteamCMD Conan Server Download",
         "UpdateSourcePlatform": "All",
         "UpdateSource": "SteamCMD",
