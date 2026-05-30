@@ -1,18 +1,18 @@
 [
     {
+        "UpdateStageName": "SteamCMD Conan First Pass",
+        "UpdateSourcePlatform": "All",
+        "UpdateSource": "SteamCMD",
+        "UpdateSourceData": "443030",
+        "SkipOnFailure": true
+    },
+    {
         "UpdateStageName": "SteamCMD Conan Server Download",
         "UpdateSourcePlatform": "All",
         "UpdateSource": "SteamCMD",
         "UpdateSourceData": "443030",
-        "SkipOnFailure": false
-    },
-    {
-        "UpdateStageName": "SteamCMD Conan Workshop Init",
-        "UpdateSourcePlatform": "All",
-        "UpdateSource": "SteamCMD",
-        "UpdateSourceData": "443030",
         "UpdateSourceArgs": "440900",
-        "SkipOnFailure": true
+        "SkipOnFailure": false
     },
     {
       "UpdateStageName": "GATZLimiter Download",
