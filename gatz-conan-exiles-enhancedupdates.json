@@ -1,5 +1,5 @@
 [
-    {
+     {
         "UpdateStageName": "SteamCMD Bootstrap Download",
         "UpdateSourcePlatform": "Windows",
         "UpdateSource": "FetchURL",
@@ -16,7 +16,7 @@
         "UpdateSourcePlatform": "Windows",
         "UpdateSource": "Executable",
         "UpdateSourceData": "C:\\Windows\\System32\\cmd.exe",
-        "UpdateSourceArgs": "/c \"\"{{$FullInstanceDir}}conan-exiles\\steamcmd.exe\" +quit\"",
+        "UpdateSourceArgs": "/c \"if not exist \"\"{{$FullInstanceDir}}conan-exiles\\steamcmd.exe\"\" exit /b 2 & \"\"{{$FullInstanceDir}}conan-exiles\\steamcmd.exe\"\" +quit & exit /b 0\"",
         "SkipOnFailure": false
     },
     {
