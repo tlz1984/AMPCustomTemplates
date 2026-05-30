@@ -1,5 +1,13 @@
 [
     {
+    "UpdateStageName": "Steam Appmanifest Seed",
+    "UpdateSourcePlatform": "Windows",
+    "UpdateSource": "Executable",
+    "UpdateSourceData": "powershell.exe",
+    "UpdateSourceArgs": "-NoProfile -ExecutionPolicy Bypass -File \"{{$FullInstanceDir}}gatz-seed-steam-appmanifest.ps1\" -SteamAppsDir \"{{$FullBaseDir}}steamapps\" -LauncherPath \"{{$FullInstanceDir}}arksa\\steamcmd.exe\" -AppId \"2430930\" -AppName \"ARK: Survival Ascended Dedicated Server\" -InstallDir \"ARK Survival Ascended Dedicated Server\"",
+    "SkipOnFailure": false
+}
+    {
         "UpdateStageName": "SteamCMD Server Download",
         "UpdateSourcePlatform": "All",
         "UpdateSource": "SteamCMD",
