@@ -1,11 +1,18 @@
 [
     {
-        "UpdateStageName": "SteamCMD and Conan Exiles Download",
+        "UpdateStageName": "SteamCMD Conan Server Download",
+        "UpdateSourcePlatform": "All",
+        "UpdateSource": "SteamCMD",
+        "UpdateSourceData": "443030",
+        "SkipOnFailure": false
+    },
+    {
+        "UpdateStageName": "SteamCMD Conan Workshop Init",
         "UpdateSourcePlatform": "All",
         "UpdateSource": "SteamCMD",
         "UpdateSourceData": "443030",
         "UpdateSourceArgs": "440900",
-        "SkipOnFailure": false
+        "SkipOnFailure": true
     },
     {
       "UpdateStageName": "GATZLimiter Download",
