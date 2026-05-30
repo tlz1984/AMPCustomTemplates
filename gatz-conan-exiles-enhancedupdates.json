@@ -9,7 +9,7 @@
         "OneShot": true
     },
     {
-        "UpdateStageName": "SteamCMD Conan Server Download",
+        "UpdateStageName": "SteamCMD Download",
         "UpdateSourcePlatform": "All",
         "UpdateSource": "SteamCMD",
         "UpdateSourceData": "443030",
