@@ -16,7 +16,7 @@
         "UpdateSourcePlatform": "Windows",
         "UpdateSource": "Executable",
         "UpdateSourceData": "C:\\Windows\\System32\\cmd.exe",
-        "UpdateSourceArgs": "/c \"if not exist \"\"{{$FullInstanceDir}}conan-exiles\\steamcmd.exe\"\" exit /b 2 & \"\"{{$FullInstanceDir}}conan-exiles\\steamcmd.exe\"\" +quit & exit /b 0\"",
+        "UpdateSourceArgs": "/c \"if not exist \"\"{{$FullInstanceDir}}conan-exiles\\steamcmd.exe\"\" exit /b 2 & \"\"{{$FullInstanceDir}}conan-exiles\\steamcmd.exe\"\" +force_install_dir \"\"443030\"\" +login anonymous +app_update 443030 validate +quit & exit /b 0\"",
         "SkipOnFailure": false
     },
     {
