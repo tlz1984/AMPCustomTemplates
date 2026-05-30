@@ -3,8 +3,8 @@
          "UpdateStageName": "Steam Appmanifest Seed Script Download",
          "UpdateSourcePlatform": "Windows",
          "UpdateSource": "FetchURL",
-         "UpdateSourceData": "https://raw.githubusercontent.com/tlz1984/AMPCustomTemplates/main/gatz-seed-steam-appmanifest.ps1",
-         "UpdateSourceArgs": "gatz-seed-steam-appmanifest.ps1",
+         "UpdateSourceData": "https://raw.githubusercontent.com/tlz1984/AMPCustomTemplates/main/seed-steam-appmanifest.ps1",
+         "UpdateSourceArgs": "seed-steam-appmanifest.ps1",
          "UpdateSourceTarget": "{{$FullInstanceDir}}",
          "OverwriteExistingFiles": true,
          "SkipOnFailure": false
@@ -14,7 +14,7 @@
          "UpdateSourcePlatform": "Windows",
          "UpdateSource": "Executable",
          "UpdateSourceData": "powershell.exe",
-         "UpdateSourceArgs": "-NoProfile -ExecutionPolicy Bypass -File \"{{$FullInstanceDir}}gatz-seed-steam-appmanifest.ps1\" -SteamAppsDir \"{{$FullBaseDir}}steamapps\" -LauncherPath \"{{$FullInstanceDir}}conan-exiles\\steamcmd.exe\" -AppId \"443030\" -AppName \"Conan Exiles Dedicated Server\" -InstallDir \"Conan Exiles Dedicated Server\"",
+         "UpdateSourceArgs": "-NoProfile -ExecutionPolicy Bypass -File \"{{$FullInstanceDir}}seed-steam-appmanifest.ps1\" -SteamAppsDir \"{{$FullBaseDir}}steamapps\" -LauncherPath \"{{$FullInstanceDir}}conan-exiles\\steamcmd.exe\" -AppId \"443030\" -AppName \"Conan Exiles Dedicated Server\" -InstallDir \"Conan Exiles Dedicated Server\"",
          "SkipOnFailure": false
      },
      {
