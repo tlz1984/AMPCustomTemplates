@@ -1,0 +1,29 @@
+[
+    {
+        "UpdateStageName": "SteamCMD and Conan Exiles Download",
+        "UpdateSourcePlatform": "All",
+        "UpdateSource": "SteamCMD",
+        "UpdateSourceData": "443030",
+        "UpdateSourceArgs": "440900",
+        "SkipOnFailure": false
+    },
+    {
+      "UpdateStageName": "GATZLimiter Download",
+      "UpdateSourcePlatform": "All",
+      "UpdateSource": "FetchURL",
+      "UpdateSourceData": "https://github.com/tlz1984/AMPCustomTemplates/releases/download/Limiter/GATZLimiter.zip",
+      "UpdateSourceArgs": "GATZLimiter.zip",
+      "UpdateSourceTarget": "{{$FullInstanceDir}}",
+      "UnzipUpdateSource": true,
+      "OverwriteExistingFiles": true,
+      "DeleteAfterExtract": true,
+      "SkipOnFailure": false
+    },
+    {
+        "UpdateStageName": "Config Directory Creation",
+        "UpdateSourcePlatform": "Windows",
+        "UpdateSource": "CreateDirectory",
+        "UpdateSourceArgs": "{{$FullBaseDir}}ConanSandbox/Saved/Config/WindowsServer",
+        "SkipOnFailure": false
+    }
+]
