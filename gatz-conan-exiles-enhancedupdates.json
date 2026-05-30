@@ -1,12 +1,5 @@
 [
     {
-        "UpdateStageName": "SteamCMD Conan First Pass",
-        "UpdateSourcePlatform": "All",
-        "UpdateSource": "SteamCMD",
-        "UpdateSourceData": "443030",
-        "SkipOnFailure": true
-    },
-    {
         "UpdateStageName": "SteamCMD Conan Server Download",
         "UpdateSourcePlatform": "All",
         "UpdateSource": "SteamCMD",
