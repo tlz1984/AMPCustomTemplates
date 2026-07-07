@@ -107,7 +107,7 @@
         "IsFlagArgument": false,
         "ParamFieldName": "game.name",
         "IncludeInCommandLine": false,
-        "DefaultValue": "Arma Reforger Server - Powered by AMP",
+        "DefaultValue": "GATZ Powered Arma Reforger Server",
         "EnumValues": {}
     },
     {
@@ -211,6 +211,7 @@
         "Keywords": "public,ip,address,publicAddress",
         "FieldName": "publicAddress",
         "InputType": "enum",
+        "Hidden": true,
         "ParamFieldName": "publicAddress",
         "DefaultValue": "{{$ExternalIP}}",
         "EnumValues": {
@@ -226,6 +227,7 @@
         "Keywords": "manual,public,ip,publicAddress",
         "FieldName": "ManualPublicIP",
         "InputType": "text",
+        "Hidden": true,
         "ParamFieldName": "ManualPublicIP",
         "DefaultValue": "",
         "EnumValues": {}
@@ -342,6 +344,7 @@
         "Keywords": "lobby,player,synchronise,player,number,lobbyplayersynchronise",
         "FieldName": "lobbyPlayerSynchronise",
         "InputType": "checkbox",
+        "Hidden": true,
         "IsFlagArgument": false,
         "ParamFieldName": "operating.lobbyPlayerSynchronise",
         "IncludeInCommandLine": false,
@@ -359,6 +362,7 @@
         "Keywords": "disable,navmesh,streaming,disableNavmeshStreaming",
         "FieldName": "disableNavmeshStreaming12",
         "InputType": "enum",
+        "Hidden": true,
         "ParamFieldName": "operating.disableNavmeshStreaming",
         "DefaultValue": "",
         "EnumValues": {
@@ -375,6 +379,7 @@
         "Keywords": "disable,navmesh,streaming,components,specific",
         "FieldName": "DisabledNavmeshComponents",
         "InputType": "text",
+        "Hidden": true,
         "ParamFieldName": "DisabledNavmeshComponents",
         "DefaultValue": "",
         "EnumValues": {}
@@ -744,6 +749,7 @@
         "Keywords": "hive,id,persistence,hiveId",
         "FieldName": "hiveId",
         "InputType": "number",
+        "Hidden": true,
         "MinValue": "0",
         "MaxValue": "16383",
         "IsFlagArgument": false,
