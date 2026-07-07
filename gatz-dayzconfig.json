@@ -855,7 +855,7 @@
             "True": "1"
         }
     },
-        {
+    {
         "DisplayName": "Enable Speed Hack Detection",
         "Category": "DayZ:stadia_controller",
         "Subcategory": "Miscellaneous:tune:3",
