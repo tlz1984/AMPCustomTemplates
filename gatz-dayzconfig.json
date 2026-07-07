@@ -61,10 +61,10 @@
         "Subcategory": "Server:dns:1",
         "Description": "See the Security and Privacy menu for configurable options for the server's RCON",
         "Keywords": "rcon,password",
-        "FieldName": "RCONPassword",
-        "InputType": "hidden",
+        "FieldName": "$RemoteAdminPassword",
+        "InputType": "password",
         "IsFlagArgument": false,
-        "ParamFieldName": "RCONPassword",
+        "ParamFieldName": "RemoteAdminPassword",
         "IncludeInCommandLine": false,
         "EnumValues": {}
     },
