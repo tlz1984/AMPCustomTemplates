@@ -18,6 +18,16 @@
          "SkipOnFailure": false
      },
      {
+        "UpdateStageName": "BepInEx Installer Script Download",
+        "UpdateSourcePlatform": "Windows",
+        "UpdateSource": "FetchURL",
+        "UpdateSourceData": "https://raw.githubusercontent.com/tlz1984/AMPCustomTemplates/main/install-bepinex-valheim.ps1",
+        "UpdateSourceArgs": "install-bepinex-valheim.ps1",
+        "UpdateSourceTarget": "{{$FullInstanceDir}}",
+        "OverwriteExistingFiles": true,
+        "SkipOnFailure": false
+     },
+     {
         "UpdateStageName": "SteamCMD Download",
         "UpdateSourcePlatform": "All",
         "UpdateSource": "SteamCMD",
