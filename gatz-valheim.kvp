@@ -74,14 +74,7 @@ App.TelnetLoginFormat={0}
 App.TelnetNewLineType=Default
 App.UpdateSources=@IncludeJSON[gatz-valheimupdates.json]
 App.PreStartStages=[]
-App.UserActions=[
-  {
-    "DisplayName": "Install BepInEx",
-    "Description": "Downloads and installs BepInExPack Valheim into the server root.",
-    "Command": "powershell.exe",
-    "Arguments": "-ExecutionPolicy Bypass -File install-bepinex-valheim.ps1"
-  }
-]
+App.UserActions=[]
 App.ForceUpdate=False
 App.ForceUpdateReason=
 App.Compatibility=None
