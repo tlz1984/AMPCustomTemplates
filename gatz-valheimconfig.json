@@ -340,36 +340,6 @@
     "EnumValues": {}
   },
   {
-    "DisplayName": "Custom Save Directory",
-    "Category": "Valheim:stadia_controller",
-    "Subcategory": "Save and Logging:save:5",
-    "Description": "Optional custom directory for Valheim world and character save data. Leave blank to use Valheim's default save location.",
-    "Keywords": "savedir,save,directory,path",
-    "FieldName": "SaveDirectory",
-    "InputType": "text",
-    "IsFlagArgument": false,
-    "ParamFieldName": "savedir",
-    "IncludeInCommandLine": false,
-    "DefaultValue": "",
-    "Placeholder": "Leave blank to use the default save directory",
-    "EnumValues": {}
-  },
-  {
-    "DisplayName": "Custom Log File",
-    "Category": "Valheim:stadia_controller",
-    "Subcategory": "Save and Logging:save:5",
-    "Description": "Optional custom path for the Valheim server log file.",
-    "Keywords": "log,logfile,path,output",
-    "FieldName": "LogFilePath",
-    "InputType": "text",
-    "IsFlagArgument": false,
-    "ParamFieldName": "logFile",
-    "IncludeInCommandLine": false,
-    "DefaultValue": "",
-    "Placeholder": "Leave blank to use the default logging behavior",
-    "EnumValues": {}
-  },
-  {
     "DisplayName": "Additional Startup Arguments",
     "Category": "Valheim:stadia_controller",
     "Subcategory": "Advanced:settings:99",
