@@ -163,27 +163,28 @@
       "-modifier combat veryhard ": "Very Hard"
     }
   },
-{
-  "DisplayName": "Death Penalty",
-  "Category": "Valheim:stadia_controller",
-  "Subcategory": "World Settings:public:3",
-  "Description": "Controls item loss and skill loss when a player dies.",
-  "Keywords": "death,penalty,skills,items,modifier",
-  "FieldName": "modifierDeathPenalty",
-  "InputType": "enum",
-  "IsFlagArgument": false,
-  "ParamFieldName": "modifierDeathPenalty",
-  "IncludeInCommandLine": false,
-  "DefaultValue": "",
-  "EnumValues": {
-    "": "Default",
-    "-modifier deathpenalty casual ": "Casual - Keep equipped gear, minimal skill loss",
-    "-modifier deathpenalty veryeasy ": "Very Easy - Drop all items, minimal skill loss",
-    "-modifier deathpenalty easy ": "Easy - Drop all items, reduced skill loss",
-    "-modifier deathpenalty hard ": "Hard - Drop equipped gear, lose remaining inventory",
-    "-modifier deathpenalty hardcore ": "Hardcore - Permanently lose carried items and skills"
-  }
-}  {
+  {
+    "DisplayName": "Death Penalty",
+    "Category": "Valheim:stadia_controller",
+    "Subcategory": "World Settings:public:3",
+    "Description": "Controls item loss and skill loss when a player dies.",
+    "Keywords": "death,penalty,skills,items,modifier",
+    "FieldName": "modifierDeathPenalty",
+    "InputType": "enum",
+    "IsFlagArgument": false,
+    "ParamFieldName": "modifierDeathPenalty",
+    "IncludeInCommandLine": false,
+    "DefaultValue": "",
+    "EnumValues": {
+      "": "Default",
+      "-modifier deathpenalty casual ": "Casual - Keep equipped gear, minimal skill loss",
+      "-modifier deathpenalty veryeasy ": "Very Easy - Drop all items, minimal skill loss",
+      "-modifier deathpenalty easy ": "Easy - Drop all items, reduced skill loss",
+      "-modifier deathpenalty hard ": "Hard - Drop equipped gear, lose remaining inventory",
+      "-modifier deathpenalty hardcore ": "Hardcore - Permanently lose carried items and skills"
+    }
+  },
+  {
     "DisplayName": "Resource Rate",
     "Category": "Valheim:stadia_controller",
     "Subcategory": "World Settings:public:3",
@@ -224,25 +225,26 @@
       "-modifier raids muchmore ": "Much More"
     }
   },
-{
-  "DisplayName": "Portal Restrictions",
-  "Category": "Valheim:stadia_controller",
-  "Subcategory": "World Settings:public:3",
-  "Description": "Controls which items can pass through portals and whether portal travel is available.",
-  "Keywords": "portal,items,restrictions,modifier",
-  "FieldName": "modifierPortals",
-  "InputType": "enum",
-  "IsFlagArgument": false,
-  "ParamFieldName": "modifierPortals",
-  "IncludeInCommandLine": false,
-  "DefaultValue": "",
-  "EnumValues": {
-    "": "Default",
-    "-modifier portals casual ": "Casual - Allow all items through portals",
-    "-modifier portals hard ": "Hard - No portals during active boss encounters",
-    "-modifier portals veryhard ": "Very Hard - Disable portal travel"
-  }
-}  {
+  {
+    "DisplayName": "Portal Restrictions",
+    "Category": "Valheim:stadia_controller",
+    "Subcategory": "World Settings:public:3",
+    "Description": "Controls which items can pass through portals and whether portal travel is available.",
+    "Keywords": "portal,items,restrictions,modifier",
+    "FieldName": "modifierPortals",
+    "InputType": "enum",
+    "IsFlagArgument": false,
+    "ParamFieldName": "modifierPortals",
+    "IncludeInCommandLine": false,
+    "DefaultValue": "",
+    "EnumValues": {
+      "": "Default",
+      "-modifier portals casual ": "Casual - Allow all items through portals",
+      "-modifier portals hard ": "Hard - No portals during active boss encounters",
+      "-modifier portals veryhard ": "Very Hard - Disable portal travel"
+    }
+  },
+  {
     "DisplayName": "No Map",
     "Category": "Valheim:stadia_controller",
     "Subcategory": "World Settings:public:3",
