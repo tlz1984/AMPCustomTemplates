@@ -303,7 +303,7 @@
     "DefaultValue": "",
     "EnumValues": {
       "False": "",
-      "True": "-removekey fire "
+      "True": "-setkey fire "
     }
   },
   {
