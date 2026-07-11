@@ -318,10 +318,10 @@
     "Subcategory": "World Settings:public:3",
     "Description": "Wood can catch fire and spread thoughout the whole world, not just in Ashlands.",
     "Keywords": "building,creative,materials,setkey,world rule",
-    "FieldName": "setKeyNoBuildCost",
+    "FieldName": "setfire",
     "InputType": "checkbox",
     "IsFlagArgument": false,
-    "ParamFieldName": "setKeyNoBuildCost",
+    "ParamFieldName": "setfire",
     "IncludeInCommandLine": false,
     "DefaultValue": "",
     "EnumValues": {
