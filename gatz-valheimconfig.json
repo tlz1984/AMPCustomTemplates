@@ -121,29 +121,6 @@
     }
   },
   {
-    "DisplayName": "World Preset",
-    "Category": "Valheim:stadia_controller",
-    "Subcategory": "World Settings:public:3",
-    "Description": "Select a predefined set of world difficulty and gameplay rules.",
-    "Keywords": "preset,difficulty,world,settings",
-    "FieldName": "worldPreset",
-    "InputType": "enum",
-    "IsFlagArgument": false,
-    "ParamFieldName": "worldPreset",
-    "IncludeInCommandLine": false,
-    "DefaultValue": "",
-    "EnumValues": {
-      "": "Default - Standard Valheim experience",
-      "-preset default ": "Default - Standard Valheim experience",
-      "-preset easy ": "Easy - Easier combat and fewer raids",
-      "-preset hard ": "Hard - Harder combat and more raids",
-      "-preset hardcore ": "Hardcore - Severe death penalty, no map or portals",
-      "-preset casual ": "Casual - Easier survival, passive enemies, no raids",
-      "-preset hammer ": "Hammer - Free building, passive enemies, no raids",
-      "-preset immersive ": "Immersive - No map or portals"
-    }
-  },
-  {
     "DisplayName": "Combat Difficulty",
     "Category": "Valheim:stadia_controller",
     "Subcategory": "World Settings:public:3",
