@@ -70,23 +70,6 @@
     "EnumValues": {}
   },
   {
-    "DisplayName": "Public Server",
-    "Category": "Valheim:stadia_controller",
-    "Subcategory": "Server:dns:1",
-    "Description": "Controls whether the server is listed in the public server browser.",
-    "Keywords": "public,browser,visible,listing",
-    "FieldName": "PublicServer",
-    "InputType": "enum",
-    "IsFlagArgument": false,
-    "ParamFieldName": "public",
-    "IncludeInCommandLine": false,
-    "DefaultValue": "1",
-    "EnumValues": {
-      "1": "Public — Listed in browser",
-      "0": "Private — Not listed"
-    }
-  },
-  {
     "DisplayName": "Player Limit",
     "Category": "Valheim:stadia_controller",
     "Subcategory": "Server:dns:1",
@@ -118,6 +101,23 @@
     "EnumValues": {
       "False": "",
       "True": "-crossplay "
+    }
+  },
+  {
+    "DisplayName": "Public Server",
+    "Category": "Valheim:stadia_controller",
+    "Subcategory": "Network:lan:2",
+    "Description": "Controls whether the server is listed in the public server browser.",
+    "Keywords": "public,browser,visible,listing",
+    "FieldName": "PublicServer",
+    "InputType": "enum",
+    "IsFlagArgument": false,
+    "ParamFieldName": "public",
+    "IncludeInCommandLine": false,
+    "DefaultValue": "1",
+    "EnumValues": {
+      "1": "Public — Listed in browser",
+      "0": "Private — Not listed"
     }
   },
   {
@@ -247,7 +247,7 @@
   {
     "DisplayName": "Disable Map",
     "Category": "Valheim:stadia_controller",
-    "Subcategory": "Special World Rules:key:4",
+    "Subcategory": "World Settings:public:3",
     "Description": "Disables the in-game map for all players.",
     "Keywords": "map,nomap,setkey,world rule",
     "FieldName": "setKeyNoMap",
@@ -264,7 +264,7 @@
   {
     "DisplayName": "Player-Centered Events",
     "Category": "Valheim:stadia_controller",
-    "Subcategory": "Special World Rules:key:4",
+    "Subcategory": "World Settings:public:3",
     "Description": "Causes world events to trigger near active players.",
     "Keywords": "events,players,setkey,world rule",
     "FieldName": "setKeyPlayerEvents",
@@ -281,7 +281,7 @@
   {
     "DisplayName": "Passive Creatures",
     "Category": "Valheim:stadia_controller",
-    "Subcategory": "Special World Rules:key:4",
+    "Subcategory": "World Settings:public:3",
     "Description": "Prevents creatures from attacking unless they are provoked.",
     "Keywords": "passive,mobs,creatures,setkey,world rule",
     "FieldName": "setKeyPassiveMobs",
@@ -298,7 +298,7 @@
   {
     "DisplayName": "No Build Cost",
     "Category": "Valheim:stadia_controller",
-    "Subcategory": "Special World Rules:key:4",
+    "Subcategory": "World Settings:public:3",
     "Description": "Allows players to construct buildings without consuming materials.",
     "Keywords": "building,creative,materials,setkey,world rule",
     "FieldName": "setKeyNoBuildCost",
@@ -311,5 +311,20 @@
       "False": "",
       "True": "-setkey nobuildcost "
     }
+  },
+  {
+    "DisplayName": "Additional Startup Arguments",
+    "Category": "Valheim:stadia_controller",
+    "Subcategory": "Advanced:settings:99",
+    "Description": "Extra Valheim command-line arguments to append to the startup command. Leave blank unless needed.",
+    "Keywords": "startup,args,command,line,advanced",
+    "FieldName": "FormattedArgs",
+    "InputType": "text",
+    "IsFlagArgument": false,
+    "ParamFieldName": "FormattedArgs",
+    "IncludeInCommandLine": false,
+    "DefaultValue": "",
+    "Placeholder": "-public 1",
+    "EnumValues": {}
   }
 ]
