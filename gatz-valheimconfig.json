@@ -116,15 +116,15 @@
     "IncludeInCommandLine": false,
     "DefaultValue": "1",
     "EnumValues": {
-      "1": "Public — Listed in browser",
-      "0": "Private — Not listed"
+      "1": "Public - Listed in browser",
+      "0": "Private - Not listed"
     }
   },
   {
     "DisplayName": "World Preset",
     "Category": "Valheim:stadia_controller",
     "Subcategory": "World Settings:public:3",
-    "Description": "[Default]: The way Valheim is meant to be played, with intended difficulty balance. Highly recommended for your first playthrough for the best experience.<br><br>[Easy] Combat easy, fewer base raids, [Hard]: Combat harder, base raids more often.<br><br>[Hardcore]: Combat a lot harder, base raids more often, when you die all skills and items you are carrying will be lost forever, no map, no portal use, may not exit boss dungeons while boss is alive.<br><br>[Casual]: Combat is a lot easier, enemies will not attack unless provoked, no base raids, resources are more plentiful, you will not drop items or lose skills on death.<br><br>[Hammer Mode]: You can build all build pieces for free once you have discovered the recipe, no base raids, enemies will not attack unless provoked, other settings are normal.<br><br>[Immersive]: No map, no portals, all other settings are normal. ",
+    "Description": "Select a predefined set of world difficulty and gameplay rules.",
     "Keywords": "preset,difficulty,world,settings",
     "FieldName": "worldPreset",
     "InputType": "enum",
@@ -133,14 +133,14 @@
     "IncludeInCommandLine": false,
     "DefaultValue": "",
     "EnumValues": {
-      "": "Default",
-      "-preset default ": "Default",
-      "-preset easy ": "Easy",
-      "-preset hard ": "Hard",
-      "-preset hardcore ": "Hardcore",
-      "-preset casual ": "Casual",
-      "-preset hammer ": "Hammer",
-      "-preset immersive ": "Immersive"
+      "": "Default - Standard Valheim experience",
+      "-preset default ": "Default - Standard Valheim experience",
+      "-preset easy ": "Easy - Easier combat and fewer raids",
+      "-preset hard ": "Hard - Harder combat and more raids",
+      "-preset hardcore ": "Hardcore - Severe death penalty, no map or portals",
+      "-preset casual ": "Casual - Easier survival, passive enemies, no raids",
+      "-preset hammer ": "Hammer - Free building, passive enemies, no raids",
+      "-preset immersive ": "Immersive - No map or portals"
     }
   },
   {
@@ -156,35 +156,34 @@
     "IncludeInCommandLine": false,
     "DefaultValue": "",
     "EnumValues": {
-      "": "Normal",
+      "": "Default",
       "-modifier combat veryeasy ": "Very Easy",
       "-modifier combat easy ": "Easy",
       "-modifier combat hard ": "Hard",
       "-modifier combat veryhard ": "Very Hard"
     }
   },
-  {
-    "DisplayName": "Death Penalty",
-    "Category": "Valheim:stadia_controller",
-    "Subcategory": "World Settings:public:3",
-    "Description": "Governs what happens when you die.<br><br>[Casual]: You do not drop equipped gear, skills are reduced a lot less than on normal mode.<br><br>[Very Easy]: You drop all items, skills are reduced a lot less than on normal mode.<br><br>[Easy]: You drop all items, skills are reduced less than on normal mode.<br><br>[Hard]: Equipped items are dropped, the rest of your inventory is lost permanently, skills are reduced faster.<br><br>[Hardcore]: You lose all carrie items and skills permanently.",
-    "Keywords": "death,penalty,skills,items,modifier",
-    "FieldName": "modifierDeathPenalty",
-    "InputType": "enum",
-    "IsFlagArgument": false,
-    "ParamFieldName": "modifierDeathPenalty",
-    "IncludeInCommandLine": false,
-    "DefaultValue": "",
-    "EnumValues": {
-      "": "Normal",
-      "-modifier deathpenalty casual ": "Casual",
-      "-modifier deathpenalty veryeasy ": "Very Easy",
-      "-modifier deathpenalty easy ": "Easy",
-      "-modifier deathpenalty hard ": "Hard",
-      "-modifier deathpenalty hardcore ": "Hardcore"
-    }
-  },
-  {
+{
+  "DisplayName": "Death Penalty",
+  "Category": "Valheim:stadia_controller",
+  "Subcategory": "World Settings:public:3",
+  "Description": "Controls item loss and skill loss when a player dies.",
+  "Keywords": "death,penalty,skills,items,modifier",
+  "FieldName": "modifierDeathPenalty",
+  "InputType": "enum",
+  "IsFlagArgument": false,
+  "ParamFieldName": "modifierDeathPenalty",
+  "IncludeInCommandLine": false,
+  "DefaultValue": "",
+  "EnumValues": {
+    "": "Default",
+    "-modifier deathpenalty casual ": "Casual - Keep equipped gear, minimal skill loss",
+    "-modifier deathpenalty veryeasy ": "Very Easy - Drop all items, minimal skill loss",
+    "-modifier deathpenalty easy ": "Easy - Drop all items, reduced skill loss",
+    "-modifier deathpenalty hard ": "Hard - Drop equipped gear, lose remaining inventory",
+    "-modifier deathpenalty hardcore ": "Hardcore - Permanently lose carried items and skills"
+  }
+}  {
     "DisplayName": "Resource Rate",
     "Category": "Valheim:stadia_controller",
     "Subcategory": "World Settings:public:3",
@@ -197,7 +196,7 @@
     "IncludeInCommandLine": false,
     "DefaultValue": "",
     "EnumValues": {
-      "": "Normal",
+      "": "Default",
       "-modifier resources muchless ": "x0.5",
       "-modifier resources less ": "x0.75",
       "-modifier resources more ": "x1.5",
@@ -217,7 +216,7 @@
     "IncludeInCommandLine": false,
     "DefaultValue": "",
     "EnumValues": {
-      "": "Normal",
+      "": "Default",
       "-modifier raids none ": "None",
       "-modifier raids muchless ": "Much Less",
       "-modifier raids less ": "Less",
@@ -225,27 +224,26 @@
       "-modifier raids muchmore ": "Much More"
     }
   },
-  {
-    "DisplayName": "Portal Restrictions",
-    "Category": "Valheim:stadia_controller",
-    "Subcategory": "World Settings:public:3",
-    "Description": "Changes how portals work in the game.<br><br>[Casual]: Allows you to bring all items with you through portals for more casual playstyle. This will circumvent the progression and exploration of the world as it is intended.<br><br>[Hard]: You will not be able to use portals or exit boss dungeons while a boss is active.<br><br>[Very Hard]: You will not be able to use portals to teleport yourself across the world.",
-    "Keywords": "portal,items,restrictions,modifier",
-    "FieldName": "modifierPortals",
-    "InputType": "enum",
-    "IsFlagArgument": false,
-    "ParamFieldName": "modifierPortals",
-    "IncludeInCommandLine": false,
-    "DefaultValue": "",
-    "EnumValues": {
-      "": "Normal",
-      "-modifier portals casual ": "Casual",
-      "-modifier portals hard ": "Hard",
-      "-modifier portals veryhard ": "Very Hard"
-    }
-  },
-  {
-    "DisplayName": "Disable Map",
+{
+  "DisplayName": "Portal Restrictions",
+  "Category": "Valheim:stadia_controller",
+  "Subcategory": "World Settings:public:3",
+  "Description": "Controls which items can pass through portals and whether portal travel is available.",
+  "Keywords": "portal,items,restrictions,modifier",
+  "FieldName": "modifierPortals",
+  "InputType": "enum",
+  "IsFlagArgument": false,
+  "ParamFieldName": "modifierPortals",
+  "IncludeInCommandLine": false,
+  "DefaultValue": "",
+  "EnumValues": {
+    "": "Default",
+    "-modifier portals casual ": "Casual - Allow all items through portals",
+    "-modifier portals hard ": "Hard - No portals during active boss encounters",
+    "-modifier portals veryhard ": "Very Hard - Disable portal travel"
+  }
+}  {
+    "DisplayName": "No Map",
     "Category": "Valheim:stadia_controller",
     "Subcategory": "World Settings:public:3",
     "Description": "Disables the in-game map for all players.",
@@ -262,10 +260,10 @@
     }
   },
   {
-    "DisplayName": "Player-Centered Events",
+    "DisplayName": "Player based raids",
     "Category": "Valheim:stadia_controller",
     "Subcategory": "World Settings:public:3",
-    "Description": "Causes world events to trigger near active players.",
+    "Description": "Raid events are player-based.",
     "Keywords": "events,players,setkey,world rule",
     "FieldName": "setKeyPlayerEvents",
     "InputType": "checkbox",
@@ -279,7 +277,7 @@
     }
   },
   {
-    "DisplayName": "Passive Creatures",
+    "DisplayName": "Passive enemies",
     "Category": "Valheim:stadia_controller",
     "Subcategory": "World Settings:public:3",
     "Description": "Prevents creatures from attacking unless they are provoked.",
@@ -310,6 +308,23 @@
     "EnumValues": {
       "False": "",
       "True": "-setkey nobuildcost "
+    }
+  },
+  {
+    "DisplayName": "Fire Hazards",
+    "Category": "Valheim:stadia_controller",
+    "Subcategory": "World Settings:public:3",
+    "Description": "Wood can catch fire and spread thoughout the whole world, not just in Ashlands.",
+    "Keywords": "building,creative,materials,setkey,world rule",
+    "FieldName": "setKeyNoBuildCost",
+    "InputType": "checkbox",
+    "IsFlagArgument": false,
+    "ParamFieldName": "setKeyNoBuildCost",
+    "IncludeInCommandLine": false,
+    "DefaultValue": "",
+    "EnumValues": {
+      "False": "",
+      "True": "-removekey fire "
     }
   },
   {
