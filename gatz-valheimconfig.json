@@ -109,17 +109,15 @@
     "Subcategory": "Network:lan:2",
     "Description": "Enables PlayFab crossplay networking for Steam, Xbox, and Microsoft Store players.",
     "Keywords": "crossplay,playfab,xbox,steam,microsoft",
-    "FieldName": "CrossplayArgument",
+    "FieldName": "crossplay",
     "InputType": "checkbox",
-    "IsFlagArgument": true,
+    "IsFlagArgument": false,
     "ParamFieldName": "crossplay",
     "IncludeInCommandLine": false,
     "DefaultValue": "",
-    "TrueValue": "-crossplay",
-    "FalseValue": "",
     "EnumValues": {
-      "-crossplay": "Enabled",
-      "": "Disabled"
+      "False": "",
+      "True": "-crossplay "
     }
   },
   {
@@ -128,21 +126,21 @@
     "Subcategory": "World Settings:public:3",
     "Description": "Applies a predefined collection of world difficulty and gameplay settings.",
     "Keywords": "preset,difficulty,world,settings",
-    "FieldName": "WorldPresetArgument",
+    "FieldName": "worldPreset",
     "InputType": "enum",
     "IsFlagArgument": false,
-    "ParamFieldName": "preset",
+    "ParamFieldName": "worldPreset",
     "IncludeInCommandLine": false,
     "DefaultValue": "",
     "EnumValues": {
       "": "No preset override",
-      "-preset default": "Default",
-      "-preset easy": "Easy",
-      "-preset hard": "Hard",
-      "-preset hardcore": "Hardcore",
-      "-preset casual": "Casual",
-      "-preset hammer": "Hammer",
-      "-preset immersive": "Immersive"
+      "-preset default ": "Default",
+      "-preset easy ": "Easy",
+      "-preset hard ": "Hard",
+      "-preset hardcore ": "Hardcore",
+      "-preset casual ": "Casual",
+      "-preset hammer ": "Hammer",
+      "-preset immersive ": "Immersive"
     }
   },
   {
@@ -151,18 +149,18 @@
     "Subcategory": "World Settings:public:3",
     "Description": "Overrides the combat difficulty from the selected world preset.",
     "Keywords": "combat,difficulty,damage,modifier",
-    "FieldName": "CombatModifierArgument",
+    "FieldName": "modifierCombat",
     "InputType": "enum",
     "IsFlagArgument": false,
-    "ParamFieldName": "modifier combat",
+    "ParamFieldName": "modifierCombat",
     "IncludeInCommandLine": false,
     "DefaultValue": "",
     "EnumValues": {
       "": "Use preset/default",
-      "-modifier combat veryeasy": "Very Easy",
-      "-modifier combat easy": "Easy",
-      "-modifier combat hard": "Hard",
-      "-modifier combat veryhard": "Very Hard"
+      "-modifier combat veryeasy ": "Very Easy",
+      "-modifier combat easy ": "Easy",
+      "-modifier combat hard ": "Hard",
+      "-modifier combat veryhard ": "Very Hard"
     }
   },
   {
@@ -171,19 +169,19 @@
     "Subcategory": "World Settings:public:3",
     "Description": "Controls the severity of penalties applied when a player dies.",
     "Keywords": "death,penalty,skills,items,modifier",
-    "FieldName": "DeathPenaltyModifierArgument",
+    "FieldName": "modifierDeathPenalty",
     "InputType": "enum",
     "IsFlagArgument": false,
-    "ParamFieldName": "modifier deathpenalty",
+    "ParamFieldName": "modifierDeathPenalty",
     "IncludeInCommandLine": false,
     "DefaultValue": "",
     "EnumValues": {
       "": "Use preset/default",
-      "-modifier deathpenalty casual": "Casual",
-      "-modifier deathpenalty veryeasy": "Very Easy",
-      "-modifier deathpenalty easy": "Easy",
-      "-modifier deathpenalty hard": "Hard",
-      "-modifier deathpenalty hardcore": "Hardcore"
+      "-modifier deathpenalty casual ": "Casual",
+      "-modifier deathpenalty veryeasy ": "Very Easy",
+      "-modifier deathpenalty easy ": "Easy",
+      "-modifier deathpenalty hard ": "Hard",
+      "-modifier deathpenalty hardcore ": "Hardcore"
     }
   },
   {
@@ -192,18 +190,18 @@
     "Subcategory": "World Settings:public:3",
     "Description": "Controls the amount of resources obtained while gathering.",
     "Keywords": "resources,gathering,drop,rate,modifier",
-    "FieldName": "ResourceModifierArgument",
+    "FieldName": "modifierResources",
     "InputType": "enum",
     "IsFlagArgument": false,
-    "ParamFieldName": "modifier resources",
+    "ParamFieldName": "modifierResources",
     "IncludeInCommandLine": false,
     "DefaultValue": "",
     "EnumValues": {
       "": "Use preset/default",
-      "-modifier resources muchless": "Much Less",
-      "-modifier resources less": "Less",
-      "-modifier resources more": "More",
-      "-modifier resources muchmore": "Much More"
+      "-modifier resources muchless ": "Much Less",
+      "-modifier resources less ": "Less",
+      "-modifier resources more ": "More",
+      "-modifier resources muchmore ": "Much More"
     }
   },
   {
@@ -212,19 +210,19 @@
     "Subcategory": "World Settings:public:3",
     "Description": "Controls how frequently raids and world events occur.",
     "Keywords": "raids,events,frequency,modifier",
-    "FieldName": "RaidModifierArgument",
+    "FieldName": "modifierRaids",
     "InputType": "enum",
     "IsFlagArgument": false,
-    "ParamFieldName": "modifier raids",
+    "ParamFieldName": "modifierRaids",
     "IncludeInCommandLine": false,
     "DefaultValue": "",
     "EnumValues": {
       "": "Use preset/default",
-      "-modifier raids none": "None",
-      "-modifier raids muchless": "Much Less",
-      "-modifier raids less": "Less",
-      "-modifier raids more": "More",
-      "-modifier raids muchmore": "Much More"
+      "-modifier raids none ": "None",
+      "-modifier raids muchless ": "Much Less",
+      "-modifier raids less ": "Less",
+      "-modifier raids more ": "More",
+      "-modifier raids muchmore ": "Much More"
     }
   },
   {
@@ -233,17 +231,17 @@
     "Subcategory": "World Settings:public:3",
     "Description": "Controls which items players are permitted to carry through portals.",
     "Keywords": "portal,items,restrictions,modifier",
-    "FieldName": "PortalModifierArgument",
+    "FieldName": "modifierPortals",
     "InputType": "enum",
     "IsFlagArgument": false,
-    "ParamFieldName": "modifier portals",
+    "ParamFieldName": "modifierPortals",
     "IncludeInCommandLine": false,
     "DefaultValue": "",
     "EnumValues": {
       "": "Use preset/default",
-      "-modifier portals casual": "Casual",
-      "-modifier portals hard": "Hard",
-      "-modifier portals veryhard": "Very Hard"
+      "-modifier portals casual ": "Casual",
+      "-modifier portals hard ": "Hard",
+      "-modifier portals veryhard ": "Very Hard"
     }
   },
   {
@@ -252,17 +250,15 @@
     "Subcategory": "Special World Rules:key:4",
     "Description": "Disables the in-game map for all players.",
     "Keywords": "map,nomap,setkey,world rule",
-    "FieldName": "NoMapArgument",
+    "FieldName": "setKeyNoMap",
     "InputType": "checkbox",
-    "IsFlagArgument": true,
-    "ParamFieldName": "setkey nomap",
+    "IsFlagArgument": false,
+    "ParamFieldName": "setKeyNoMap",
     "IncludeInCommandLine": false,
     "DefaultValue": "",
-    "TrueValue": "-setkey nomap",
-    "FalseValue": "",
     "EnumValues": {
-      "-setkey nomap": "Enabled",
-      "": "Disabled"
+      "False": "",
+      "True": "-setkey nomap "
     }
   },
   {
@@ -271,17 +267,15 @@
     "Subcategory": "Special World Rules:key:4",
     "Description": "Causes world events to trigger near active players.",
     "Keywords": "events,players,setkey,world rule",
-    "FieldName": "PlayerEventsArgument",
+    "FieldName": "setKeyPlayerEvents",
     "InputType": "checkbox",
-    "IsFlagArgument": true,
-    "ParamFieldName": "setkey playerevents",
+    "IsFlagArgument": false,
+    "ParamFieldName": "setKeyPlayerEvents",
     "IncludeInCommandLine": false,
     "DefaultValue": "",
-    "TrueValue": "-setkey playerevents",
-    "FalseValue": "",
     "EnumValues": {
-      "-setkey playerevents": "Enabled",
-      "": "Disabled"
+      "False": "",
+      "True": "-setkey playerevents "
     }
   },
   {
@@ -290,17 +284,15 @@
     "Subcategory": "Special World Rules:key:4",
     "Description": "Prevents creatures from attacking unless they are provoked.",
     "Keywords": "passive,mobs,creatures,setkey,world rule",
-    "FieldName": "PassiveMobsArgument",
+    "FieldName": "setKeyPassiveMobs",
     "InputType": "checkbox",
-    "IsFlagArgument": true,
-    "ParamFieldName": "setkey passivemobs",
+    "IsFlagArgument": false,
+    "ParamFieldName": "setKeyPassiveMobs",
     "IncludeInCommandLine": false,
     "DefaultValue": "",
-    "TrueValue": "-setkey passivemobs",
-    "FalseValue": "",
     "EnumValues": {
-      "-setkey passivemobs": "Enabled",
-      "": "Disabled"
+      "False": "",
+      "True": "-setkey passivemobs "
     }
   },
   {
@@ -309,49 +301,15 @@
     "Subcategory": "Special World Rules:key:4",
     "Description": "Allows players to construct buildings without consuming materials.",
     "Keywords": "building,creative,materials,setkey,world rule",
-    "FieldName": "NoBuildCostArgument",
+    "FieldName": "setKeyNoBuildCost",
     "InputType": "checkbox",
-    "IsFlagArgument": true,
-    "ParamFieldName": "setkey nobuildcost",
+    "IsFlagArgument": false,
+    "ParamFieldName": "setKeyNoBuildCost",
     "IncludeInCommandLine": false,
     "DefaultValue": "",
-    "TrueValue": "-setkey nobuildcost",
-    "FalseValue": "",
     "EnumValues": {
-      "-setkey nobuildcost": "Enabled",
-      "": "Disabled"
+      "False": "",
+      "True": "-setkey nobuildcost "
     }
-  },
-  {
-    "DisplayName": "Save Interval",
-    "Category": "Valheim:stadia_controller",
-    "Subcategory": "Save and Logging:save:5",
-    "Description": "Number of seconds between automatic world saves.",
-    "Keywords": "save,interval,autosave,seconds",
-    "FieldName": "SaveInterval",
-    "InputType": "number",
-    "MinValue": "60",
-    "MaxValue": "86400",
-    "IsFlagArgument": false,
-    "ParamFieldName": "saveinterval",
-    "IncludeInCommandLine": false,
-    "DefaultValue": "1800",
-    "Suffix": "seconds",
-    "EnumValues": {}
-  },
-  {
-    "DisplayName": "Additional Startup Arguments",
-    "Category": "Valheim:stadia_controller",
-    "Subcategory": "Advanced:settings:99",
-    "Description": "Additional Valheim command-line arguments appended to the startup command. Do not repeat settings already managed above.",
-    "Keywords": "startup,args,command,line,advanced",
-    "FieldName": "FormattedArgs",
-    "InputType": "text",
-    "IsFlagArgument": false,
-    "ParamFieldName": "FormattedArgs",
-    "IncludeInCommandLine": false,
-    "DefaultValue": "",
-    "Placeholder": "Enter additional arguments only",
-    "EnumValues": {}
   }
 ]
