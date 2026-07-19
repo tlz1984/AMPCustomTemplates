@@ -32,7 +32,6 @@
         "Keywords": "",
         "FieldName": "ConsoleEnabled",
         "InputType": "number",
-        "Hidden": true,
         "ParamFieldName": "Debug.ConsoleEnabled",
         "DefaultValue": "1",
         "EnumValues": {}
@@ -45,7 +44,6 @@
         "Keywords": "",
         "FieldName": "GuiConsoleEnabled",
         "InputType": "number",
-        "Hidden": true,
         "ParamFieldName": "Debug.GuiConsoleEnabled",
         "DefaultValue": "0",
         "EnumValues": {}
