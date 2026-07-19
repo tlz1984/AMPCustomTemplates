@@ -25,30 +25,6 @@
         "EnumValues": {}
     },
     {
-        "DisplayName": "Enable UE4SS Console",
-        "Category": "Palworld:stadia_controller",
-        "Subcategory": "Server:dns:1",
-        "Description": "",
-        "Keywords": "",
-        "FieldName": "ConsoleEnabled",
-        "InputType": "number",
-        "ParamFieldName": "Debug.ConsoleEnabled",
-        "DefaultValue": "1",
-        "EnumValues": {}
-    },
-    {
-        "DisplayName": "Disable UE4SS GUI Console",
-        "Category": "Palworld:stadia_controller",
-        "Subcategory": "Server:dns:1",
-        "Description": "",
-        "Keywords": "",
-        "FieldName": "GuiConsoleEnabled",
-        "InputType": "number",
-        "ParamFieldName": "Debug.GuiConsoleEnabled",
-        "DefaultValue": "0",
-        "EnumValues": {}
-    },
-    {
         "DisplayName": "Server Name",
         "Category": "Palworld:stadia_controller",
         "Subcategory": "Server:dns:1",
@@ -451,21 +427,6 @@
         "EnumValues": {
             "Text": "Text (default)",
             "Json": "JSON"
-        }
-    },
-    {
-        "DisplayName": "Enable UE4SS UObject Listeners (Windows)",
-        "Category": "Palworld:stadia_controller",
-        "Subcategory": "Server:dns:1",
-        "Description": "If set, UObject listeners will be created in GUObjectArray to create a fast cache for use instead of iterating GUObjectArray. Recommended to keep disabled for UE4SS mods to avoid crashes. Windows only",
-        "Keywords": "ue4ss,uobject,listeners,bUseUObjectArrayCache",
-        "FieldName": "bUseUObjectArrayCache",
-        "InputType": "checkbox",
-        "ParamFieldName": "General.bUseUObjectArrayCache",
-        "DefaultValue": "false",
-        "EnumValues": {
-            "False": "false",
-            "True": "true"
         }
     },
     {
@@ -1699,40 +1660,6 @@
         "DefaultValue": "0.000000",
         "Placeholder": "0.000000",
         "Suffix": "seconds",
-        "EnumValues": {}
-    },
-    {
-        "DisplayName": "Install UE Scripting System (Windows)",
-        "Category": "Updates",
-        "Subcategory": "Runtime Configuration:build:3",
-        "Description": "Sets the action to take when the server is updated. If an installation option is selected, the selected build of the Unreal Engine 4/5 Scripting System will be installed from either the [UE4SS-RE repo](https://github.com/UE4SS-RE/RE-UE4SS) or the [Okaetsu forked repo](https://github.com/Okaetsu/RE-UE4SS), allowing the server to be modded without using the Steam Workshop. Also set the Specific UE4SS-RE Experimental Build Version if relevant. Windows only",
-        "Keywords": "install,ue4ss,unreal,engine,scripting,system,ue4ss-re,okaetsu,modding,experimental",
-        "FieldName": "InstallUE4SS",
-        "InputType": "enum",
-        "Hidden": true,
-        "ParamFieldName": "InstallUE4SS",
-        "DefaultValue": "",
-        "EnumValues": {
-            "": "Do nothing (default)",
-            "false": "Remove UE4SS files",
-            "experimental-palworld": "Install latest Okaetsu experimental build (recommended build)",
-            "experimental-latest": "Install latest UE4SS-RE experimental build",
-            "experimental": "Install specific UE4SS-RE experimental build",
-            "true": "Install latest UE4SS-RE release build"
-        }
-    },
-    {
-        "DisplayName": "Specific UE4SS-RE Experimental Build Version",
-        "Category": "Updates",
-        "Subcategory": "Runtime Configuration:build:3",
-        "Description": "If \"Install specific UE4SS-RE experimental build\" is selected under Install UE Scripting System, sets the [relevant UE4SS-RE version](https://github.com/UE4SS-RE/RE-UE4SS/releases/tag/experimental) to install. Example: v3.0.1-137-g6867a08",
-        "Keywords": "ue4ss,unreal,engine,scripting,system,experimental",
-        "FieldName": "UE4SSExperimentalVersion",
-        "InputType": "text",
-        "Hidden": true,
-        "ParamFieldName": "UE4SSExperimentalVersion",
-        "DefaultValue": "v3.0.1-137-g6867a08",
-        "Placeholder": "v3.0.1-137-g6867a08",
         "EnumValues": {}
     }
 ]
