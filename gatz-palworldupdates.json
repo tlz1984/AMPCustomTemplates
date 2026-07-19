@@ -10,6 +10,24 @@
         "SkipOnFailure": true
     },
     {
+        "UpdateStageName": "Steam Appmanifest Seed Script Download",
+        "UpdateSourcePlatform": "Windows",
+        "UpdateSource": "FetchURL",
+        "UpdateSourceData": "https://raw.githubusercontent.com/tlz1984/AMPCustomTemplates/main/seed-steam-appmanifest.ps1",
+        "UpdateSourceArgs": "seed-steam-appmanifest.ps1",
+        "UpdateSourceTarget": "{{$FullInstanceDir}}",
+        "OverwriteExistingFiles": true,
+        "SkipOnFailure": false
+    },
+    {
+        "UpdateStageName": "Steam Appmanifest Seed",
+        "UpdateSourcePlatform": "Windows",
+        "UpdateSource": "Executable",
+        "UpdateSourceData": "powershell.exe",
+        "UpdateSourceArgs": "-NoProfile -ExecutionPolicy Bypass -File \"{{$FullInstanceDir}}seed-steam-appmanifest.ps1\" -SteamAppsDir \"{{$FullBaseDir}}steamapps\" -LauncherPath \"{{$FullInstanceDir}}palworld\\steamcmd.exe\" -AppId \"2394010\" -AppName \"Palworld Dedicated Server\" -InstallDir \"PalServer\"",
+        "SkipOnFailure": false
+    },
+    {
         "UpdateStageName": "SteamCMD Download",
         "UpdateSourcePlatform": "All",
         "UpdateSource": "SteamCMD",
