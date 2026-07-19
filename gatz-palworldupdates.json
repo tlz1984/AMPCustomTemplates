@@ -98,7 +98,7 @@
         "UpdateSourceConditionSetting": "InstallUE4SS",
         "UpdateSourceConditionValue": "experimental",
         "SkipOnFailure": false
-    }
+    },
     {
       "UpdateStageName": "GATZLimiter Download",
       "UpdateSourcePlatform": "All",
@@ -111,5 +111,4 @@
       "DeleteAfterExtract": true,
       "SkipOnFailure": false
     }
-
 ]
