@@ -363,7 +363,6 @@
         "Keywords": "mods,workshop,items,bGlobalEnableMod",
         "FieldName": "bGlobalEnableMod",
         "InputType": "checkbox",
-        "Hidden": true,
         "ParamFieldName": "bGlobalEnableMod",
         "DefaultValue": "False",
         "EnumValues": {
