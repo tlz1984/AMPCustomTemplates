@@ -10,19 +10,5 @@
         "AutoMap": true,
         "ConfigType": "template",
         "ConfigFileTemplate": "palworld/AMP_PalWorldSettings.ini"
-    },
-    {
-        "ConfigFile": "Mods/PalModSettings.ini",
-        "ConfigType": "ini",
-        "ConfigFormat": "{0}{1}",
-        "Subsections": [
-            {
-                "Heading": "PalModSettings",
-                "SettingMappings": {
-                    "bGlobalEnableMod=": "bGlobalEnableMod",
-                    "": "ActiveModList"
-                }
-            }
-        ]
     }
 ]
