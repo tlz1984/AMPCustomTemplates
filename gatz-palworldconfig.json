@@ -356,21 +356,6 @@
         "EnumValues": {}
     },
     {
-        "DisplayName": "Enable Steam Workshop Mods (Windows)",
-        "Category": "Palworld:stadia_controller",
-        "Subcategory": "Server:dns:1",
-        "Description": "If set, the mods listed under Active Steam Workshop Mods List will be enabled on the server, if they are installed. Steam Workshop mods can be downloaded from the Steam Workshop under Updates>Steam Workshop, or installed manually in the 'Mods/Workshop' folder. Windows only",
-        "Keywords": "mods,workshop,items,bGlobalEnableMod",
-        "FieldName": "bGlobalEnableMod",
-        "InputType": "checkbox",
-        "ParamFieldName": "bGlobalEnableMod",
-        "DefaultValue": "False",
-        "EnumValues": {
-            "False": "False",
-            "True": "True"
-        }
-    },
-    {
         "DisplayName": "Active Steam Workshop Mods List (Windows)",
         "Category": "Palworld:stadia_controller",
         "Subcategory": "Server:dns:1",
