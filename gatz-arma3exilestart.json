@@ -56,7 +56,7 @@
         "SkipOnFailure": true
     },
     {
-        "UpdateStageName": "Headless Client Script Download",
+        "UpdateStageName": "Headless Client Script Download x64",
         "UpdateSourcePlatform": "Linux",
         "UpdateSource": "FetchURL",
         "UpdateSourceData": "https://raw.githubusercontent.com/tlz1984/AMPCustomTemplates/main/gatz-arma3exilerunhc.sh",
@@ -67,7 +67,7 @@
         "UpdateSourceConditionValue": "_x64"
     },
     {
-        "UpdateStageName": "Headless Client Script Download",
+        "UpdateStageName": "Headless Client Script Download x64",
         "UpdateSourcePlatform": "Windows",
         "UpdateSource": "FetchURL",
         "UpdateSourceData": "https://raw.githubusercontent.com/tlz1984/AMPCustomTemplates/main/gatz-arma3exilerunhc.ps1",
@@ -78,7 +78,7 @@
         "UpdateSourceConditionValue": "_x64"
     },
     {
-        "UpdateStageName": "Headless Client Script Download",
+        "UpdateStageName": "Headless Client Script Download x86",
         "UpdateSourcePlatform": "Linux",
         "UpdateSource": "FetchURL",
         "UpdateSourceData": "https://raw.githubusercontent.com/tlz1984/AMPCustomTemplates/main/gatz-arma3exilerunhc32.sh",
@@ -89,7 +89,7 @@
         "UpdateSourceConditionValue": ""
     },
     {
-        "UpdateStageName": "Headless Client Script Download",
+        "UpdateStageName": "Headless Client Script Download x86",
         "UpdateSourcePlatform": "Windows",
         "UpdateSource": "FetchURL",
         "UpdateSourceData": "https://raw.githubusercontent.com/tlz1984/AMPCustomTemplates/main/gatz-arma3exilerunhc32.ps1",
@@ -100,20 +100,46 @@
         "UpdateSourceConditionValue": ""
     },
     {
-        "UpdateStageName": "Start Headless Clients",
+        "UpdateStageName": "Start Headless Clients x64",
         "UpdateSourcePlatform": "Linux",
         "UpdateSource": "Executable",
         "UpdateSourceData": "/bin/bash",
-        "UpdateSourceArgs": "-c \"chmod +x ./runhc.sh; ./runhc.sh {{HeadlessClientsNum}} {{$ApplicationIPBinding}} {{$GamePort}} \\\"{{password}}\\\" \\\"{{mod}}\\\" \\\"{{hc_parfile}}\\\" {{HeadlessClientsStartLimit}} &\"",
+        "UpdateSourceArgs": "-c \"chmod +x ./gatz-arma3exilerunhc.sh; ./gatz-arma3exilerunhc.sh {{HeadlessClientsNum}} {{$ApplicationIPBinding}} {{$GamePort}} \\\"{{password}}\\\" \\\"{{mod}}\\\" \\\"{{hc_parfile}}\\\" {{HeadlessClientsStartLimit}} &\"",
+        "UpdateSourceConditionSetting": "ServerExecutable",
+        "UpdateSourceConditionValue": "_x64",
         "RunInBackground": true,
         "SkipOnFailure": true
     },
     {
-        "UpdateStageName": "Start Headless Clients",
+        "UpdateStageName": "Start Headless Clients x86",
+        "UpdateSourcePlatform": "Linux",
+        "UpdateSource": "Executable",
+        "UpdateSourceData": "/bin/bash",
+        "UpdateSourceArgs": "-c \"chmod +x ./gatz-arma3exilerunhc32.sh; ./gatz-arma3exilerunhc32.sh {{HeadlessClientsNum}} {{$ApplicationIPBinding}} {{$GamePort}} \\\"{{password}}\\\" \\\"{{mod}}\\\" \\\"{{hc_parfile}}\\\" {{HeadlessClientsStartLimit}} &\"",
+        "UpdateSourceConditionSetting": "ServerExecutable",
+        "UpdateSourceConditionValue": "",
+        "RunInBackground": true,
+        "SkipOnFailure": true
+    },
+    {
+        "UpdateStageName": "Start Headless Clients x64",
         "UpdateSourcePlatform": "Windows",
         "UpdateSource": "Executable",
         "UpdateSourceData": "cmd.exe",
-        "UpdateSourceArgs": "/C start powershell.exe -NoProfile -ExecutionPolicy Bypass -File \"runhc.ps1\" {{HeadlessClientsNum}} {{$ApplicationIPBinding}} {{$GamePort}} \"{{password}}\" \"{{mod}}\" \"{{hc_parfile}}\" {{HeadlessClientsStartLimit}}",
+        "UpdateSourceArgs": "/C start \"Arma 3 Headless Client x64\" powershell.exe -NoProfile -ExecutionPolicy Bypass -File \"gatz-arma3exilerunhc.ps1\" {{HeadlessClientsNum}} {{$ApplicationIPBinding}} {{$GamePort}} \"{{password}}\" \"{{mod}}\" \"{{hc_parfile}}\" {{HeadlessClientsStartLimit}}",
+        "UpdateSourceConditionSetting": "ServerExecutable",
+        "UpdateSourceConditionValue": "_x64",
+        "RunInBackground": true,
+        "SkipOnFailure": true
+    },
+    {
+        "UpdateStageName": "Start Headless Clients x86",
+        "UpdateSourcePlatform": "Windows",
+        "UpdateSource": "Executable",
+        "UpdateSourceData": "cmd.exe",
+        "UpdateSourceArgs": "/C start \"Arma 3 Headless Client x86\" powershell.exe -NoProfile -ExecutionPolicy Bypass -File \"gatz-arma3exilerunhc32.ps1\" {{HeadlessClientsNum}} {{$ApplicationIPBinding}} {{$GamePort}} \"{{password}}\" \"{{mod}}\" \"{{hc_parfile}}\" {{HeadlessClientsStartLimit}}",
+        "UpdateSourceConditionSetting": "ServerExecutable",
+        "UpdateSourceConditionValue": "",
         "RunInBackground": true,
         "SkipOnFailure": true
     }
